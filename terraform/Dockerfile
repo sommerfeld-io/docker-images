@@ -14,6 +14,10 @@
 # pipeline. The pipeline ensures a consistent Github configuration and all configuration
 # for all repositories.
 #
+# == About the tags and versions
+#
+# include::ROOT:partial$/docker-tag-strategy.adoc[]
+#
 # == How to use this image
 #
 # Use this command to run the image as a non-root user (pass the current user of the
