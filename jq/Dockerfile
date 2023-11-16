@@ -4,10 +4,6 @@
 # @description The link:https://hub.docker.com/r/sommerfeldio/jq[``sommerfeldio/jq``]
 # image ships with link:https://stedolan.github.io/jq[jq] which is a lightweight and
 # flexible command-line JSON processor.
-#
-# == About the tags and versions
-#
-# include::ROOT:partial$/docker-tag-strategy.adoc[]
 
 
 FROM ubuntu:23.10
