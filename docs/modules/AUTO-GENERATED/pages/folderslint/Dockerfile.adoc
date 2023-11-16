@@ -9,6 +9,10 @@ image is a utility Docker image used in Github Actions workflows to validate the
 directory structure of a project. The image ships with
 link:https://www.npmjs.com/package/folderslint[folderslint].
 
+== About the tags and versions
+
+include::ROOT:partial$/docker-tag-strategy.adoc[]
+
 == How to use this image
 To use the image run the following command.
 
