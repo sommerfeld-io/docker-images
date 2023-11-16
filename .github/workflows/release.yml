@@ -90,7 +90,8 @@ jobs:
         if: github.event.inputs.publish == 'true'
         run: |
           sudo apt-get install -y pandoc asciidoc
-          asciidoc -b docbook README.adoc
+          # asciidoc -b docbook README.adoc
+          asciidoc -b docbook docs/modules/AUTO-GENERATED/pages/${{ matrix.image }}/Dockerfile.adoc
           pandoc -f docbook -t markdown_strict README.xml -o README.md
         shell: bash
       - name: Update DockerHub description
