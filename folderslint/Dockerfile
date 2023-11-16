@@ -16,7 +16,7 @@
 #
 # === Use in a Github Actions workflow
 #
-# [source, yml]
+# [source, yaml]
 # ```
 # lint-folders:
 #   runs-on: ubuntu-latest
