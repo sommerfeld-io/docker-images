@@ -14,12 +14,10 @@ enhancing the understanding of the codebase and facilitating smoother collaborat
 NOTE: This image is intentionally running as root to make sure it can be used inside
 Github Actions workflows without permission errors.
 
-== About the tags and versions
-
-include::ROOT:partial$/docker-tag-strategy.adoc[]
-
 == How to use this image
 To use the image run the following command from a bash file.
+
+[source, bash]
 
 ----
 docker run --rm --user "$(id -u):$(id -g)"  --volume /etc/timezone:/etc/timezone:ro  --volume /etc/localtime:/etc/localtime:ro  --volume "$(pwd):/project"  --workdir "/project"  sommerfeldio/source2docs:latest
