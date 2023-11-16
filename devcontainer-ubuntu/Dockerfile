@@ -60,7 +60,7 @@ RUN chsh --shell /bin/bash "$USER" \
     && echo "alias ll='ls -alF'" >> "/home/$USER/.bashrc" \
     && curl https://raw.githubusercontent.com/sebastian-sommerfeld-io/jarvis/main/src/main/install.sh | bash - \
     && apt-get update \
-    && apt-get install -y --no-install-recommends python3-pip=22.0.2+dfsg-1ubuntu0.3 \
+    && apt-get install -y --no-install-recommends python3-pip=22.0.2+dfsg-1ubuntu0.4 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     && pip install --no-cache-dir pre-commit==3.3.3
