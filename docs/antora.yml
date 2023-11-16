@@ -1,7 +1,7 @@
 ---
 name: dev-environment-config
 title: Dev Environment Config
-version: main
+version: v0.1.1-alpha.0
 start_page: ROOT:index.adoc
 nav:
   - modules/ROOT/nav.adoc
