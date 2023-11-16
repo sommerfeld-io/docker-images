@@ -13,12 +13,13 @@
     "docs/modules/*/partials/*",
     "docs/modules/*/partials/**",
 
-    "resources/sync/*",
-
-    "src/main/**",
-    "src/test/**",
-
-    "resources/**",
+    "devcontainer-go",
+    "devcontainer-ubuntu",
+    "folderslint",
+    "ftp-client",
+    "jq",
+    "source2docs/assets",
+    "terraform",
 
     "node_modules/**",
     "target/**"
