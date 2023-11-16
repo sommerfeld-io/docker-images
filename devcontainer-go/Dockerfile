@@ -16,10 +16,6 @@
 # essential prerequisites for this development environment. This devcontainer has
 # been tested with Docker version 24.0.2 on top of Ubuntu 22.10.
 #
-# == About the tags and versions
-#
-# include::ROOT:partial$/docker-tag-strategy.adoc[]
-#
 # == How to use this image
 #
 # The dev container configuration is either located under ``.devcontainer/devcontainer.json``
@@ -32,6 +28,7 @@
 # This ``.devcontainer/devcontainer.json`` config allows the use of docker containers
 # inside the devcontainer and initializes ``pre-commit`` once the container is created.
 #
+# [source, json]
 # ```
 # {
 # 	"name": "Go",

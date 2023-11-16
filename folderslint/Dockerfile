@@ -6,19 +6,17 @@
 # directory structure of a project. The image ships with
 # link:https://www.npmjs.com/package/folderslint[folderslint].
 #
-# == About the tags and versions
-#
-# include::ROOT:partial$/docker-tag-strategy.adoc[]
-#
 # == How to use this image
 # To use the image run the following command.
 #
+# [source, bash]
 # ```
 # docker run -it --rm --volume "$(pwd):$(pwd)" --workdir "$(pwd)" sommerfeldio/folderslint:latest
 # ```
 #
 # === Use in a Github Actions workflow
 #
+# [source, yml]
 # ```
 # lint-folders:
 #   runs-on: ubuntu-latest

@@ -14,10 +14,6 @@
 # pipeline. The pipeline ensures a consistent Github configuration and all configuration
 # for all repositories.
 #
-# == About the tags and versions
-#
-# include::ROOT:partial$/docker-tag-strategy.adoc[]
-#
 # == How to use this image
 #
 # Use this command to run the image as a non-root user (pass the current user of the
@@ -28,6 +24,7 @@
 # link:https://registry.terraform.io/providers/integrations/github/latest/docs[Terraform Github Provider].
 # Adjust the environment variables according to your needs.
 #
+# [source, bash]
 # ```
 # BW_CLIENT_ID="bitwarden-data"
 # BW_CLIENT_SECRET="bitwarden-data"
