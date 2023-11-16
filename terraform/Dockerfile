@@ -54,7 +54,7 @@
 # recommended way to handle your secrets.
 
 
-FROM hashicorp/terraform:1.5.1
+FROM hashicorp/terraform:1.6.4
 LABEL maintainer="sebastian@sommerfeld.io"
 
 # Install basics
