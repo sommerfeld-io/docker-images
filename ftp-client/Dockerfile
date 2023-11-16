@@ -31,7 +31,7 @@
 
 
 
-FROM ubuntu:23.04
+FROM ubuntu:23.10
 LABEL maintainer="sebastian@sommerfeld.io"
 
 RUN apt-get update \
