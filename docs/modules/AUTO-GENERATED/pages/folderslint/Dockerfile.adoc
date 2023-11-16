@@ -20,7 +20,7 @@ docker run -it --rm --volume "$(pwd):$(pwd)" --workdir "$(pwd)" sommerfeldio/fol
 
 === Use in a Github Actions workflow
 
-[source, yml]
+[source, yaml]
 
 ----
 lint-folders:
