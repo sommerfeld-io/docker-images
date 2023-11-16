@@ -31,28 +31,25 @@ to work. The `GITHUB_TOKEN` environment variable is needed for the
 link:https://registry.terraform.io/providers/integrations/github/latest/docs[Terraform Github Provider].
 Adjust the environment variables according to your needs.
 
-[source, bash]
-
-'''
-
+----
 BW_CLIENT_ID="bitwarden-data"
 BW_CLIENT_SECRET="bitwarden-data"
 BW_MASTER_PASS="bitwarden-data"
 
-docker run --rm +
---volume /etc/passwd:/etc/passwd:ro +
---volume /etc/group:/etc/group:ro +
---user "$(id -u):$(id -g)" +
---volume /etc/timezone:/etc/timezone:ro +
---volume /etc/localtime:/etc/localtime:ro +
---volume "$(pwd):$(pwd)" +
---workdir "$(pwd)" +
---env "GITHUB_TOKEN=$TOKEN" +
---env "TF_VAR_bw_client_id=$BW_CLIENT_ID" +
---env "TF_VAR_bw_client_secret=$BW_CLIENT_SECRET" +
---env "TF_VAR_bw_password=$BW_MASTER_PASS" +
+docker run --rm \
+--volume /etc/passwd:/etc/passwd:ro \
+--volume /etc/group:/etc/group:ro \
+--user "$(id -u):$(id -g)" \
+--volume /etc/timezone:/etc/timezone:ro \
+--volume /etc/localtime:/etc/localtime:ro \
+--volume "$(pwd):$(pwd)" \
+--workdir "$(pwd)" \
+--env "GITHUB_TOKEN=$TOKEN" \
+--env "TF_VAR_bw_client_id=$BW_CLIENT_ID" \
+--env "TF_VAR_bw_client_secret=$BW_CLIENT_SECRET" \
+--env "TF_VAR_bw_password=$BW_MASTER_PASS" \
 sommerfeldio/terraform:latest apply -auto-approve
----
+----
 
 CAUTION: Keep in mind that storing passwords in variables like this is not a
 recommended way to handle your secrets.

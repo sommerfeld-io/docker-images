@@ -16,25 +16,18 @@ include::ROOT:partial$/docker-tag-strategy.adoc[]
 == How to use this image
 To use the image run the following command.
 
-[source, bash]
-
-'''
-
+----
 docker run -it --rm --volume "$(pwd):$(pwd)" --workdir "$(pwd)" sommerfeldio/folderslint:latest
----
+----
 
 === Use in a Github Actions workflow
 
-[source, yaml]
-
-'''
-
+----
 lint-folders:
 runs-on: ubuntu-latest
 steps:
-
-* name: Checkout code
+- name: Checkout code
 uses: actions/checkout@v3
-* name: Run folderslint in container
+- name: Run folderslint in container
 run: docker run -i --rm --volume "$(pwd):$(pwd)" --workdir "$(pwd)" sommerfeldio/folderslint:latest
----
+----
