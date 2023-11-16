@@ -8,12 +8,10 @@ The link:https://hub.docker.com/r/sommerfeldio/ftp-client[`sommerfeldio/ftp-clie
 image ships with NCFTP and uses link:https://www.ncftp.com/ncftp/doc/ncftpput.html[ncftpput]
 for FTP uploads and downloads.
 
-== About the tags and versions
-
-include::ROOT:partial$/docker-tag-strategy.adoc[]
-
 == How to use this image
 To use the image run the following command from a bash file.
+
+[source, bash]
 
 ----
 FTP_HOST="ftp-host.example.com"

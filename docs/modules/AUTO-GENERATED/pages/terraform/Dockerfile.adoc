@@ -17,10 +17,6 @@ link:https://github.com/sebastian-sommerfeld-io/configs/actions/workflows/config
 pipeline. The pipeline ensures a consistent Github configuration and all configuration
 for all repositories.
 
-== About the tags and versions
-
-include::ROOT:partial$/docker-tag-strategy.adoc[]
-
 == How to use this image
 
 Use this command to run the image as a non-root user (pass the current user of the
@@ -30,6 +26,8 @@ link:https://registry.terraform.io/providers/maxlaverse/bitwarden/latest/docs[Te
 to work. The `GITHUB_TOKEN` environment variable is needed for the
 link:https://registry.terraform.io/providers/integrations/github/latest/docs[Terraform Github Provider].
 Adjust the environment variables according to your needs.
+
+[source, bash]
 
 ----
 BW_CLIENT_ID="bitwarden-data"
