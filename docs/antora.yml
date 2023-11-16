@@ -1,6 +1,6 @@
 ---
-name: dev-environment-config
-title: Dev Environment Config
+name: docker-images
+title: Docker Images
 version: main
 start_page: ROOT:index.adoc
 nav:

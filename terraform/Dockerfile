@@ -28,9 +28,7 @@
 # link:https://registry.terraform.io/providers/integrations/github/latest/docs[Terraform Github Provider].
 # Adjust the environment variables according to your needs.
 #
-# [source, bash]
-#
-# ----
+# ```
 # BW_CLIENT_ID="bitwarden-data"
 # BW_CLIENT_SECRET="bitwarden-data"
 # BW_MASTER_PASS="bitwarden-data"
@@ -48,7 +46,7 @@
 #     --env "TF_VAR_bw_client_secret=$BW_CLIENT_SECRET" \
 #     --env "TF_VAR_bw_password=$BW_MASTER_PASS" \
 #     sommerfeldio/terraform:latest apply -auto-approve
-# ----
+# ```
 #
 # CAUTION: Keep in mind that storing passwords in variables like this is not a
 # recommended way to handle your secrets.

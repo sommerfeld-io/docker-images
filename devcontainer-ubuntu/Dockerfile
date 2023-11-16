@@ -33,9 +33,7 @@
 # This ``.devcontainer/devcontainer.json`` config allows the use of docker containers
 # inside the devcontainer and initializes ``pre-commit`` once the container is created.
 #
-# [source, json]
-#
-# ----
+# ```
 # {
 # 	"name": "Ubuntu",
 #     "image": "sommerfeldio/devcontainer-ubuntu:main",
@@ -46,7 +44,7 @@
 #
 # 	"postCreateCommand": "pre-commit install"
 # }
-# ----
+# ```
 
 
 FROM mcr.microsoft.com/devcontainers/base:ubuntu-22.04

@@ -13,17 +13,13 @@
 # == How to use this image
 # To use the image run the following command.
 #
-# [source, bash]
-#
-# ----
+# ```
 # docker run -it --rm --volume "$(pwd):$(pwd)" --workdir "$(pwd)" sommerfeldio/folderslint:latest
-# ----
+# ```
 #
 # === Use in a Github Actions workflow
 #
-# [source, yaml]
-#
-# ----
+# ```
 # lint-folders:
 #   runs-on: ubuntu-latest
 #   steps:
@@ -31,7 +27,7 @@
 #       uses: actions/checkout@v3
 #     - name: Run folderslint in container
 #       run: docker run -i --rm --volume "$(pwd):$(pwd)" --workdir "$(pwd)" sommerfeldio/folderslint:latest
-# ----
+# ```
 
 
 FROM node:21.2.0-alpine

@@ -32,9 +32,7 @@
 # This ``.devcontainer/devcontainer.json`` config allows the use of docker containers
 # inside the devcontainer and initializes ``pre-commit`` once the container is created.
 #
-# [source, json]
-#
-# ----
+# ```
 # {
 # 	"name": "Go",
 #     "image": "sommerfeldio/devcontainer-go:main",
@@ -45,7 +43,7 @@
 #
 # 	"postCreateCommand": "pre-commit install"
 # }
-# ----
+# ```
 
 
 FROM mcr.microsoft.com/devcontainers/go:1.21-bullseye
