@@ -1,0 +1,14 @@
+= Github Repository Settings
+
+A summary of all settings that are specific to this project.
+
+== Github Actions Secrets
+Create link:https://github.com/sommerfeld-io/dev-environment-config/settings/secrets/actions[Github Actions secrets] to allow interaction with DockerHub and SonarCloud from link:https://github.com/sommerfeld-io/dev-environment-config/actions[Actions workflows].
+
+// [cols="1,3", options="header"]
+// |===
+// |Secrets |Description
+// |`SONAR_TOKEN` |Configured when creating the project in SonarCloud (manage tokens on the link:https://sonarcloud.io/account/security[SonarCloud Security page])
+// |===
+
+There is no need to configure any other secret. The link:https://github.com/sommerfeld-io[sommerfeld-io GitHub organization] provides them (see link:/docs/monorepo/main/settings/github-organization.html[Github organisation secrets]).

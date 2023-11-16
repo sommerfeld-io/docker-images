@@ -1,0 +1,29 @@
+{
+	"name": "docker-images",
+    "image": "sommerfeldio/devcontainer-ubuntu:main",
+
+	"customizations": {
+		"vscode": {
+			"settings": {},
+			"extensions": [
+				"streetsidesoftware.code-spell-checker",
+				"asciidoctor.asciidoctor-vscode",
+				"ms-azuretools.vscode-docker",
+				"aaron-bond.better-comments",
+				"pomdtr.markdown-kroki",
+				"timonwong.shellcheck",
+				"jebbs.plantuml",
+				"golang.go",
+				"github.vscode-github-actions",
+				"redhat.vscode-yaml",
+				"alexkrechik.cucumberautocomplete"
+			]
+		}
+	},
+
+	"features": {
+		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
+	},
+
+	"postCreateCommand": "pre-commit install"
+}

@@ -1,0 +1,1 @@
+* xref:AUTO-GENERATED:src/main/docker/source2docs/entrypoint-sh.adoc[src/main/docker/source2docs/entrypoint.sh]

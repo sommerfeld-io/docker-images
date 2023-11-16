@@ -1,0 +1,5 @@
+Docker images follow a tagging convention based on semantic versioning. Each stable version of an image is tagged with a specific semantic version (e.g. `:v0.2.0`), while the `:latest` tag always points to the most recent stable version.
+
+Unstable pre-release versions are marked with a suffix (`-alpha.0`, `-beta.1` or `-rc.2`). These versions usually are used for development, testing, review and approval purposes. These versions are not recommended for production use. `:latest` never points to an unstable pre-release.
+
+Images also have an `:main` tag, which contains the most recent feature set from the `main` branch. This feature set is not yet released, but based on our approach is in a releasable state. Still, the `:main` tag is potentially unstable. Other Branches do not publish their own image versions to DockerHub.

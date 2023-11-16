@@ -1,0 +1,7 @@
+Sebastian Sommerfeld <sebastian@sommerfeld.io>
+:project-name: dev-environment-config
+:url-project: https://github.com/sommerfeld-io/{project-name}
+:github-actions-url: {url-project}/actions/workflows
+:job-ci: ci.yml
+:job-generate-docs: docs-as-code.yml
+:badge: badge.svg

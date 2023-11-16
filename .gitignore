@@ -1,0 +1,20 @@
+.idea
+target
+node_modules
+.target
+.vagrant*
+*.log
+*.lock
+yamllint-*
+
+# terraform
+.terraform
+.terraform.lock*
+tfplan
+.bitwarden*
+
+# secrets
+*.token
+*.pass
+*.user
+*.secret

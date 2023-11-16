@@ -1,0 +1,222 @@
+= entrypoint.sh
+
+Entrypoint for the Docker image. This file controls the creation of the Antora module and Asciidoc files.
+
+== Overview
+
+This script serves as the entrypoint for the
+xref:AUTO-GENERATED:src/main/docker/source2docs/Dockerfile.adoc[src/main/docker/source2docs/Dockerfile]
+which handles generating Asciidoc documentation based on inline documentation.
+
+The script scans the project for files matching `.sh`, `Dockerfile` and `docker-compose.yml`
+filenames and generates Asciidoc files from the source codes inline documentation.
+
+=== Script Arguments
+
+The script does not accept any parameters.
+
+== Index
+
+* <<_checkcurrentdirectory,checkCurrentDirectory>>
+* <<_initdirectorytree,initDirectoryTree>>
+* <<_createmodulenav,createModuleNav>>
+* <<_createmodulestartpage,createModuleStartpage>>
+* <<_addmoduletoantorayml,addModuleToAntoraYml>>
+* <<_generatedocsforpattern,generateDocsForPattern>>
+* <<_initnavpartial,initNavPartial>>
+* <<_createdocsfromsourcecodefile,createDocsFromSourceCodeFile>>
+* <<_translatesourcecodefilepathtoadocpath,translateSourceCodeFilePathToAdocPath>>
+* <<_createadocfromsourcecodefile,createAdocFromSourceCodeFile>>
+* <<_createlinkinnavpartial,createLinkInNavPartial>>
+
+=== checkCurrentDirectory
+
+Check the current directory and validate that all needed subdirectories
+are present. It is expected that you run the Docker container from the root of your
+project and an Antora docs folder is present.
+
+==== Example
+
+[,bash]
+----
+checkCurrentDirectory
+----
+
+==== Exit codes
+
+* *0*: If successful
+* *1*: If a mandatory subdirectory is missing
+
+=== initDirectoryTree
+
+Clear and re-initialize the directory structure for the `AUTO-GENERATED`
+Antora module.
+
+==== Example
+
+[,bash]
+----
+initDirectoryTree
+----
+
+=== createModuleNav
+
+Create the `nav.adoc` for the Antora module (the real one, not a partial).
+The `nav.adoc` is rather short because the real navigation takes place inside the
+`AUTO-GENERATED` modules startpage.
+
+==== Example
+
+[,bash]
+----
+createModuleNav
+----
+
+=== createModuleStartpage
+
+Write the `index.adoc` for the `AUTO-GENERATED` module based on the
+`index-template.adoc`.
+
+==== Example
+
+[,bash]
+----
+createModuleStartpage
+----
+
+=== addModuleToAntoraYml
+
+Add the module to the `antora.yml` file.
+
+==== Example
+
+[,bash]
+----
+addModuleToAntoraYml
+----
+
+=== generateDocsForPattern
+
+Generate Asciidoc documentation files for the given filename pattern.
+Find all files that match the pattern and generate adoc pages with information from
+the source code files inline docs. Inline docs must comply to
+link:https://github.com/reconquest/shdoc[shdoc].
+
+==== Example
+
+[,bash]
+----
+generateDocsForPattern '*.sh' 'bash-docs'
+----
+
+==== Arguments
+
+* *$1* (string): File name pattern which is passed to `find`
+
+==== Exit codes
+
+* *0*: If successful
+* *1*: If file name pattern is missing (e.g. `*.sh`)
+
+=== initNavPartial
+
+Initialize the `docs/modules/AUTO-GENERATED/partials/nav-<SOURCE_TYPE>.adoc`
+file which contains the navigation for the respective source code type and is included
+from the `docs/modules/AUTO-GENERATED/pages/index.adoc`.
+
+The adoc-partials are included from the `AUTO-GENERATED` modules index.adoc
+which is based on the `index-template.adoc` from this repository.
+
+==== Example
+
+[,bash]
+----
+initNavPartial '*.sh' 'bash-docs'
+----
+
+==== Arguments
+
+* *$1* (string): File name pattern which is passed to `find`
+
+==== Exit codes
+
+* *0*: If successful
+* *1*: If file name pattern is missing (e.g. `*.sh`)
+
+=== createDocsFromSourceCodeFile
+
+Iterate files based on the given filename pattern and trigger
+generating Asciidoc pages based on the source codes inline docs. Building a
+navigation is triggered as well.
+
+==== Example
+
+[,bash]
+----
+createDocsFromSourceCodeFile '*.sh'
+----
+
+==== Arguments
+
+* *$1* (string): Path to source code file
+
+==== Exit codes
+
+* *0*: If successful
+* *1*: If path to source code file is missing
+
+=== translateSourceCodeFilePathToAdocPath
+
+Translate the path and filename of a source code file
+into a path and filename that will be written into the `AUTO-GENERATED`
+module.
+
+==== Example
+
+[,bash]
+----
+translateSourceCodeFilePathToAdocPath /path/to/source/file.sh
+----
+
+==== Arguments
+
+* *$1* (string): Path to source code file
+
+==== Exit codes
+
+* *0*: If successful
+* *1*: If path to source code file is missing
+
+=== createAdocFromSourceCodeFile
+
+Create Asciidoc file for given source code file. Instead
+of params, this script relies on global vars which where set by
+`translateSourceCodeFilePathToAdocPath`.
+
+==== Example
+
+[,bash]
+----
+createAdocFromSourceCodeFile
+----
+
+==== Exit codes
+
+* *0*: If successful
+
+=== createLinkInNavPartial
+
+Add a link to an adoc file to the navigation partial. Instead
+of params, this script relies on global vars which where set by
+`initNavPartial`.
+
+==== Example
+
+[,bash]
+----
+createLinkInNavPartial
+----
+
+==== Exit codes
+
+* *0*: If successful

@@ -1,0 +1,35 @@
+---
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: docker
+    directory: devcontainer-go
+    schedule:
+      interval: weekly
+  - package-ecosystem: docker
+    directory: devcontainer-ubuntu
+    schedule:
+      interval: weekly
+  - package-ecosystem: docker
+    directory: folderslint
+    schedule:
+      interval: weekly
+  - package-ecosystem: docker
+    directory: ftp-client
+    schedule:
+      interval: weekly
+  - package-ecosystem: docker
+    directory: jq
+    schedule:
+      interval: weekly
+  - package-ecosystem: docker
+    directory: source2docs
+    schedule:
+      interval: weekly
+  - package-ecosystem: docker
+    directory: terraform
+    schedule:
+      interval: weekly
