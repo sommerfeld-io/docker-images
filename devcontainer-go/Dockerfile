@@ -34,7 +34,7 @@
 #
 # [source, json]
 #
-# ....
+# ----
 # {
 # 	"name": "Go",
 #     "image": "sommerfeldio/devcontainer-go:main",
@@ -45,7 +45,7 @@
 #
 # 	"postCreateCommand": "pre-commit install"
 # }
-# ....
+# ----
 
 
 FROM mcr.microsoft.com/devcontainers/go:1.21-bullseye

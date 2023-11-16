@@ -20,9 +20,9 @@
 #
 # [source, bash]
 #
-# ....
+# ----
 # docker run --rm --user "$(id -u):$(id -g)"  --volume /etc/timezone:/etc/timezone:ro  --volume /etc/localtime:/etc/localtime:ro  --volume "$(pwd):/project"  --workdir "/project"  sommerfeldio/source2docs:latest
-# ....
+# ----
 #
 # NOTE: Run this image from the root of your project. Do not change the volume bind from
 # ``/project`` to anything else because the scripts inside the action expect this folder

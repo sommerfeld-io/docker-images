@@ -35,7 +35,7 @@
 #
 # [source, json]
 #
-# ....
+# ----
 # {
 # 	"name": "Ubuntu",
 #     "image": "sommerfeldio/devcontainer-ubuntu:main",
@@ -46,7 +46,7 @@
 #
 # 	"postCreateCommand": "pre-commit install"
 # }
-# ....
+# ----
 
 
 FROM mcr.microsoft.com/devcontainers/base:ubuntu-22.04
