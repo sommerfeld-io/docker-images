@@ -38,7 +38,8 @@ inside the devcontainer and initializes `pre-commit` once the container is creat
 
 [source, json]
 
-....
+'''
+
 {
 "name": "Ubuntu",
 "image": "sommerfeldio/devcontainer-ubuntu:main",
@@ -49,4 +50,4 @@ inside the devcontainer and initializes `pre-commit` once the container is creat
 
 "postCreateCommand": "pre-commit install"
 }
-....
+---
