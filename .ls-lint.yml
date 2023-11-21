@@ -32,13 +32,17 @@ ls:
   .gitkeep: lowercase
 
 ignore:
-  # globals
   - .git
   - .idea
   - .vscode
   - node_modules
   - .gitpod.yml
   - target
+  - .adoc-links.json
+  - .gherkin-lintrc.json
+  - .ls-lint.yml
+  - .pre-commit-config.yaml
+  - .yamllint.yml
 
   # linter definitions
   - .adoc-links.json
