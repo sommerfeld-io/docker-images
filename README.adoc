@@ -49,3 +49,4 @@ link:{url-project}/issues?q=is%3Aissue+label%3Asecurity%2Crisk+is%3Aopen[All iss
 
 == Contact
 Feel free to contact me via sebastian@sommerfeld.io or visit my website https://www.sommerfeld.io.
+
