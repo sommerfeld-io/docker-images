@@ -37,7 +37,7 @@
 # ```
 # {
 # 	"name": "Ubuntu",
-#     "image": "sommerfeldio/devcontainer-ubuntu:main",
+#     "image": "sommerfeldio/devcontainer-ubuntu:rc",
 #
 # 	"features": {
 # 		"ghcr.io/devcontainers/features/docker-in-docker:2": {}

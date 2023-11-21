@@ -40,7 +40,7 @@ inside the devcontainer and initializes `pre-commit` once the container is creat
 ----
 {
 "name": "Go",
-"image": "sommerfeldio/devcontainer-go:main",
+"image": "sommerfeldio/devcontainer-go:rc",
 
 "features": {
 "ghcr.io/devcontainers/features/docker-in-docker:2": {}

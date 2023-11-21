@@ -1,6 +1,6 @@
 {
 	"name": "docker-images",
-    "image": "sommerfeldio/devcontainer-ubuntu:main",
+    "image": "sommerfeldio/devcontainer-ubuntu:rc",
 
 	"customizations": {
 		"vscode": {

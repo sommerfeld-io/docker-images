@@ -73,10 +73,10 @@ jobs:
           VERSION_TAG="${{ github.event.inputs.version }}"
           VERSION_TAG="${VERSION_TAG:1}"
           IMAGE="${{ secrets.DOCKERHUB_USER }}/${{ matrix.image }}"
-          docker pull "$IMAGE:main"
+          docker pull "$IMAGE:rc"
 
-          docker tag "$IMAGE:main" "$IMAGE:latest"
-          docker tag "$IMAGE:main" "$IMAGE:$VERSION_TAG"
+          docker tag "$IMAGE:rc" "$IMAGE:latest"
+          docker tag "$IMAGE:rc" "$IMAGE:$VERSION_TAG"
 
           if [[ "${{ github.event.inputs.version }}" != *"-alpha"* && "${{ github.event.inputs.version }}" != *"-beta"* ]]; then
             docker push "$IMAGE:latest"

@@ -68,7 +68,7 @@ jobs:
         with:
           ref: ${{github.ref}}
       - name: Generate docs from source code
-        run: docker run --rm --volume "$(pwd):/project" --workdir "/project" sommerfeldio/source2docs:main
+        run: docker run --rm --volume "$(pwd):/project" --workdir "/project" sommerfeldio/source2docs:rc
         shell: bash
       - name: Commit and push
         uses: EndBug/add-and-commit@v9

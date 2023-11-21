@@ -36,7 +36,7 @@
 # ```
 # {
 # 	"name": "Go",
-#     "image": "sommerfeldio/devcontainer-go:main",
+#     "image": "sommerfeldio/devcontainer-go:rc",
 #
 # 	"features": {
 # 		"ghcr.io/devcontainers/features/docker-in-docker:2": {}
