@@ -1,5 +1,4 @@
 * xref:AUTO-GENERATED:devcontainer-go/Dockerfile.adoc[devcontainer-go/Dockerfile]
-* xref:AUTO-GENERATED:terraform/Dockerfile.adoc[terraform/Dockerfile]
 * xref:AUTO-GENERATED:folderslint/Dockerfile.adoc[folderslint/Dockerfile]
 * xref:AUTO-GENERATED:jq/Dockerfile.adoc[jq/Dockerfile]
 * xref:AUTO-GENERATED:source2docs/Dockerfile.adoc[source2docs/Dockerfile]
