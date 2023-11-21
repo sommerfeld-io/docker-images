@@ -1,7 +1,8 @@
 Collection of Docker images for various purposes.
 
 image:{github-actions-url}/{job-generate-docs}/{badge}[Github Badge, link={github-actions-url}/{job-generate-docs}]
-image:{github-actions-url}/{job-ci}/{badge}[Github Badge, link={github-actions-url}/{job-ci}]
+image:{github-actions-url}/{job-lint}/{badge}[Github Badge, link={github-actions-url}/{job-lint}]
+image:{github-actions-url}/{job-build}/{badge}[Github Badge, link={github-actions-url}/{job-build}]
 
 == About this project
 In standard practice, individual Docker images would typically have their own dedicated repositories and distinct versioning. However, in this particular case, the decision to consolidate these images within a single repository is based on a combination of factors.
