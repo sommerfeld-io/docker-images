@@ -50,7 +50,7 @@ jobs:
       contents: read
     strategy:
       matrix:
-        image: ['devcontainer-go', 'devcontainer-ubuntu', 'folderslint', 'ftp-client', 'jq', 'source2docs', 'terraform']
+        image: ['devcontainer-go', 'devcontainer-ubuntu', 'folderslint', 'ftp-client', 'jq', 'source2docs']
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

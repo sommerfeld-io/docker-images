@@ -19,7 +19,6 @@
     "ftp-client",
     "jq",
     "source2docs/assets",
-    "terraform",
 
     "node_modules/**",
     "target/**"

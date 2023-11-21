@@ -22,7 +22,6 @@ This repository also is a compilation of Docker images primed for utilization wi
 * https://hub.docker.com/r/sommerfeldio/folderslint
 * https://hub.docker.com/r/sommerfeldio/ftp-client
 * https://hub.docker.com/r/sommerfeldio/jq
-* https://hub.docker.com/r/sommerfeldio/terraform
 
 === About the tags and versions
 include::ROOT:partial$/docker-tag-strategy.adoc[]
