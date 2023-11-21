@@ -70,7 +70,7 @@ jobs:
           #   TAG="$GITHUB_HEAD_REF"
           # fi
 
-          TAG='main'
+          TAG='rc'
 
           echo "tag = $TAG"
           echo "DOCKER_TAG=$TAG" >> $GITHUB_OUTPUT
