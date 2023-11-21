@@ -1,5 +1,5 @@
 ---
-# @file build-images.yml
+# @file build.yml
 # @brief Github Actions workflow for the website module that builds the Docker images and runs automated tests.
 #
 # @description This GitHub Actions workflow is designed for continuous integration and automates
@@ -10,7 +10,7 @@
 # reliable codebase.
 
 
-name: Build Docker Images
+name: Build
 
 on:
   push:
