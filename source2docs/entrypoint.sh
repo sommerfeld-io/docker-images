@@ -31,10 +31,12 @@ export ANTORA_MODULE
 readonly PATTERN_SH="*.sh"
 readonly PATTERN_DOCKERFILE="Dockerfile"
 readonly PATTERN_DOCKER_COMPOSE="docker-compose.yml"
+readonly PATTERN_MAKEFILE="Makefile"
 readonly PATTERN_VAGRANTFILE="Vagrantfile"
 export PATTERN_SH
 export PATTERN_DOCKERFILE
 export PATTERN_DOCKER_COMPOSE
+export PATTERN_MAKEFILE
 export PATTERN_VAGRANTFILE
 
 # global vars which are used and updated from functions
@@ -175,6 +177,9 @@ function initNavPartial() {
         "$PATTERN_DOCKER_COMPOSE")
             NAV_PARTIAL_PATH="$ANTORA_MODULE/partials/nav-docker-compose.adoc"
         ;;
+        "$PATTERN_MAKEFILE")
+            NAV_PARTIAL_PATH="$ANTORA_MODULE/partials/nav-makefile.adoc"
+        ;;
         "$PATTERN_VAGRANTFILE")
             NAV_PARTIAL_PATH="$ANTORA_MODULE/partials/nav-vagrantfile.adoc"
         ;;
@@ -300,4 +305,5 @@ addModuleToAntoraYml
 generateDocsForPattern "$PATTERN_SH"
 generateDocsForPattern "$PATTERN_DOCKERFILE"
 generateDocsForPattern "$PATTERN_DOCKER_COMPOSE"
+generateDocsForPattern "$PATTERN_MAKEFILE"
 generateDocsForPattern "$PATTERN_VAGRANTFILE"
