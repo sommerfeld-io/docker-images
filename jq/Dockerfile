@@ -14,6 +14,6 @@ FROM ubuntu:24.04
 LABEL maintainer="sebastian@sommerfeld.io"
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends jq=1.6-3 \
+    && apt-get install -y --no-install-recommends jq=1.7-1 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
