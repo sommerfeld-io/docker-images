@@ -38,7 +38,7 @@
 # script serves as the entrypoint for this Docker image.
 
 
-FROM bitnami/git:2.41.0-debian-11-r16
+FROM bitnami/git:2.42.0-debian-11-r23
 LABEL maintainer="sebastian@sommerfeld.io"
 
 RUN groupadd -g 1000 sebastian \
