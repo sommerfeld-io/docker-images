@@ -16,7 +16,8 @@
 				"golang.go",
 				"github.vscode-github-actions",
 				"redhat.vscode-yaml",
-				"alexkrechik.cucumberautocomplete"
+				"alexkrechik.cucumberautocomplete",
+				"ms-vscode.makefile-tools"
 			]
 		}
 	},
