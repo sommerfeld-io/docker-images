@@ -25,7 +25,7 @@
 
 
 .DEFAULT_GOAL := all
-.PHONY: test clean all
+.PHONY: test clean all devcontainer-go devcontainer-ubuntu folderslint ftp-client jq source2docs
 
 
 define build_image
