@@ -11,6 +11,8 @@ Sebastian Sommerfeld <sebastian@sommerfeld.io>
 // |                                                                  |
 // +------------------------------------------------------------------+
 
+Documentation based on the inline docs of our source code files. These pages are generated automatically to ensure they are up to date.
+
 == Bash Script Docs
 Bash scripts documentation is done inline using the documentation pattern from `link:https://github.com/reconquest/shdoc[shdoc]`. These docs pages describing bash scripts are auto-generated from a pipeline using `shdoc`.
 
