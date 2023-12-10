@@ -1,4 +1,6 @@
 = Github Repository Settings
+Sebastian Sommerfeld <sebastian@sommerfeld.io>
+:page-layout: full-page
 
 A summary of all settings that are specific to this project.
 
