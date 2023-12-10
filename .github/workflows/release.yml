@@ -125,6 +125,7 @@ jobs:
 
   reset-version:
     needs: github-tag-and-release
+    if: always()
     permissions:
       contents: write
     uses: sommerfeld-io/.github/.github/workflows/module-release-antora-version.yml@main
