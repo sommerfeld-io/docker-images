@@ -29,41 +29,41 @@
 
 
 define build_image
-	docker run --rm -i hadolint/hadolint:latest < "$(1)/Dockerfile"
-	docker build -t "local/$(1):dev" $(1)
+	docker run --rm -i hadolint/hadolint:latest < $(1)/Dockerfile
+	docker build -t local/$(1):dev $(1)
 endef
 
 
 all: test devcontainer-go devcontainer-ubuntu folderslint ftp-client jq source2docs
 
 lint-makefile:
-	docker run --rm --volume "$(shell pwd):/data" cytopia/checkmake:latest Makefile
+	docker run --rm --volume $(shell pwd):/data cytopia/checkmake:latest Makefile
 
 lint-yaml:
 	docker run --rm  $$(tty -s && echo "-it" || echo) --volume $(shell pwd):/data cytopia/yamllint:latest .
 
 lint-folders:
-	docker run --rm -i --volume "$(shell pwd):$(shell pwd)" --workdir "$(shell pwd)" sommerfeldio/folderslint:latest folderslint
+	docker run --rm -i --volume $(shell pwd):$(shell pwd) --workdir $(shell pwd) sommerfeldio/folderslint:latest folderslint
 
 lint-filenames:
-	docker run --rm -i --volume "$(shell pwd):/data" --workdir "/data" lslintorg/ls-lint:1.11.2
+	docker run --rm -i --volume $(shell pwd):/data --workdir /data lslintorg/ls-lint:1.11.2
 
 test: lint-makefile lint-yaml lint-folders lint-filenames
 
 devcontainer-go: test
-	$(call build_image,"$@")
+	$(call build_image,$@)
 
 devcontainer-ubuntu: test
-	$(call build_image,"$@")
+	$(call build_image,$@)
 
 folderslint: test
-	$(call build_image,"$@")
+	$(call build_image,$@)
 
 ftp-client: test
-	$(call build_image,"$@")
+	$(call build_image,$@)
 
 jq: test
-	$(call build_image,"$@")
+	$(call build_image,$@)
 
 source2docs: test
-	$(call build_image,"$@")
+	$(call build_image,$@)
