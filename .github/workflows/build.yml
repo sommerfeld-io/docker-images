@@ -10,7 +10,7 @@
 # reliable codebase.
 
 
-name: Build
+name: Build (is releasable)
 
 on:
   push:
@@ -43,9 +43,55 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+  lint-yaml:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run yamllint
+        run: make lint-yaml
+        shell: bash
+
+  lint-folders:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run folderslint in container
+        run: make lint-folders
+        shell: bash
+
+  lint-filenames:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run ls-lint in container
+        run: make lint-filenames
+        shell: bash
+
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@2.0.0
+        with:
+          ignore_paths: node_modules target
+
+  lint-makefile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Run checkmake in container
+        run: make lint-makefile
+        shell: bash
 
   ci-docker-images:
     runs-on: ubuntu-latest
+    needs: ['lint-yaml', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-makefile']
     permissions:
       contents: read
     strategy:
@@ -93,7 +139,7 @@ jobs:
 
   on-failure:
     runs-on: ubuntu-latest
-    needs: ['sonar-scan', 'ci-docker-images']
+    needs: ['sonar-scan', 'lint-yaml', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-makefile', 'ci-docker-images']
     if: failure()
     steps:
       - name: Send Pipeline Status to Google Chat
