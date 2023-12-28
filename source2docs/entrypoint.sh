@@ -33,11 +33,13 @@ readonly PATTERN_DOCKERFILE="Dockerfile"
 readonly PATTERN_DOCKER_COMPOSE="docker-compose.yml"
 readonly PATTERN_MAKEFILE="Makefile"
 readonly PATTERN_VAGRANTFILE="Vagrantfile"
+readonly PATTERN_INSPEC="*.rb" # Interpret all Ruby files as InSpec tests because this is (at the moment) the only place Ruby is used
 export PATTERN_SH
 export PATTERN_DOCKERFILE
 export PATTERN_DOCKER_COMPOSE
 export PATTERN_MAKEFILE
 export PATTERN_VAGRANTFILE
+export PATTERN_INSPEC
 
 # global vars which are used and updated from functions
 export SOURCE_CODE_FILE=""
@@ -183,6 +185,9 @@ function initNavPartial() {
         "$PATTERN_VAGRANTFILE")
             NAV_PARTIAL_PATH="$ANTORA_MODULE/partials/nav-vagrantfile.adoc"
         ;;
+        "$PATTERN_INSPEC")
+            NAV_PARTIAL_PATH="$ANTORA_MODULE/partials/nav-inspec.adoc"
+        ;;
     esac
 
     echo "[INFO] Create navigation partial $NAV_PARTIAL_PATH"
@@ -307,3 +312,4 @@ generateDocsForPattern "$PATTERN_DOCKERFILE"
 generateDocsForPattern "$PATTERN_DOCKER_COMPOSE"
 generateDocsForPattern "$PATTERN_MAKEFILE"
 generateDocsForPattern "$PATTERN_VAGRANTFILE"
+generateDocsForPattern "$PATTERN_INSPEC"
