@@ -1,0 +1,49 @@
+---
+# @file docker-compose.yml
+# @brief Docker Compose configuration to build all Docker images from this repository locally.
+#
+# @description This Docker Compose configuration build all Docker images from this
+# repository locally.
+#
+# === Prerequisites
+#
+# This compose config has been developed and tested with Docker version 24.0.2 on top of
+# Ubuntu 22.10.
+#
+# == How to Use
+#
+# Make sure to control the image builds and containers by using the xref:AUTO-GENERATED:Makefile.adoc[Makefile].
+
+
+version: "3.3"
+services:
+
+  devcontainer-go:
+    container_name: devcontainer-go
+    build: src/main/devcontainer-go
+    image: local/devcontainer-go:dev
+
+  devcontainer-ubuntu:
+    container_name: devcontainer-ubuntu
+    build: src/main/devcontainer-ubuntu
+    image: local/devcontainer-ubuntu:dev
+
+  folderslint:
+    container_name: folderslint
+    build: src/main/folderslint
+    image: local/folderslint:dev
+
+  ftp-client:
+    container_name: ftp-client
+    build: src/main/ftp-client
+    image: local/ftp-client:dev
+
+  jq:
+    container_name: jq
+    build: src/main/jq
+    image: local/jq:dev
+
+  source2docs:
+    container_name: source2docs
+    build: src/main/source2docs
+    image: local/source2docs:dev

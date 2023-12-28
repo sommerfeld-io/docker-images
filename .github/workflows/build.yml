@@ -103,7 +103,7 @@ jobs:
       - name: hadolint
         uses: hadolint/hadolint-action@v3.1.0
         with:
-          dockerfile: ${{ matrix.image }}/Dockerfile
+          dockerfile: src/main/${{ matrix.image }}/Dockerfile
       - name: Set docker tag ('edge' for main or feature branch)
         id: vars
         run: |
@@ -132,7 +132,7 @@ jobs:
       - name: Docker image build
         uses: docker/build-push-action@v5
         with:
-          context: ${{ matrix.image }}
+          context: src/main/${{ matrix.image }}
           platforms: linux/amd64
           push: ${{ (github.actor != 'dependabot[bot]') && (github.ref == 'refs/heads/main') }}
           tags: ${{ secrets.DOCKERHUB_USER }}/${{ matrix.image }}:${{ steps.vars.outputs.DOCKER_TAG }}

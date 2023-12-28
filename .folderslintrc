@@ -13,12 +13,7 @@
     "docs/modules/*/partials/*",
     "docs/modules/*/partials/**",
 
-    "devcontainer-go",
-    "devcontainer-ubuntu",
-    "folderslint",
-    "ftp-client",
-    "jq",
-    "source2docs/assets",
+    "src/main/**",
 
     "node_modules/**",
     "target/**"

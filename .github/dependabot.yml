@@ -6,26 +6,26 @@ updates:
     schedule:
       interval: weekly
   - package-ecosystem: docker
-    directory: devcontainer-go
+    directory: src/main/devcontainer-go
     schedule:
       interval: weekly
   - package-ecosystem: docker
-    directory: devcontainer-ubuntu
+    directory: src/main/devcontainer-ubuntu
     schedule:
       interval: weekly
   - package-ecosystem: docker
-    directory: folderslint
+    directory: src/main/folderslint
     schedule:
       interval: weekly
   - package-ecosystem: docker
-    directory: ftp-client
+    directory: src/main/ftp-client
     schedule:
       interval: weekly
   - package-ecosystem: docker
-    directory: jq
+    directory: src/main/jq
     schedule:
       interval: weekly
   - package-ecosystem: docker
-    directory: source2docs
+    directory: src/main/source2docs
     schedule:
       interval: weekly

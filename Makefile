@@ -25,16 +25,10 @@
 
 
 .DEFAULT_GOAL := all
-.PHONY: test clean all lint-makefile lint-yaml lint-folders lint-filenames devcontainer-go devcontainer-ubuntu folderslint ftp-client jq source2docs
+.PHONY: test build clean all lint-makefile lint-yaml lint-folders lint-filenames lint-dockerfiles
 
 
-define build_image
-	docker run --rm -i hadolint/hadolint:latest < $(1)/Dockerfile
-	docker build -t local/$(1):dev $(1)
-endef
-
-
-all: test devcontainer-go devcontainer-ubuntu folderslint ftp-client jq source2docs
+all: build clean
 
 lint-makefile:
 	docker run --rm --volume $(shell pwd):/data cytopia/checkmake:latest Makefile
@@ -48,22 +42,18 @@ lint-folders:
 lint-filenames:
 	docker run --rm -i --volume $(shell pwd):/data --workdir /data lslintorg/ls-lint:1.11.2
 
-test: lint-makefile lint-yaml lint-folders lint-filenames
+SRC_DIR = src/main
+lint-dockerfiles: $(SRC_DIR)/*
+	@for dir in $^ ; do \
+		echo "[INFO] Lint Dockerfile $${dir}" ; \
+		docker run --rm -i hadolint/hadolint:latest < $${dir}/Dockerfile ; \
+	done
 
-devcontainer-go: test
-	$(call build_image,$@)
+test: lint-dockerfiles lint-makefile lint-yaml lint-folders lint-filenames
 
-devcontainer-ubuntu: test
-	$(call build_image,$@)
+build: test
+	docker compose build --no-cache
 
-folderslint: test
-	$(call build_image,$@)
-
-ftp-client: test
-	$(call build_image,$@)
-
-jq: test
-	$(call build_image,$@)
-
-source2docs: test
-	$(call build_image,$@)
+clean:
+	@echo "[INFO] Remove containers"
+	docker compose down --rmi all --volumes --remove-orphans
