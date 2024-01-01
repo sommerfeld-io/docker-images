@@ -27,6 +27,10 @@
 #
 # CAUTION: Keep in mind that storing passwords in variables like this is not a
 # recommended way to handle your secrets.
+#
+# == See also
+#
+# For Docker image sources, see https://github.com/sommerfeld-io/docker-images/tree/main/src/main.
 
 
 

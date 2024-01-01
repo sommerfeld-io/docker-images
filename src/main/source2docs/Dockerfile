@@ -11,6 +11,9 @@
 # NOTE: This image is intentionally running as root to make sure it can be used inside
 # Github Actions workflows without permission errors.
 #
+# This image is link:https://hub.docker.com/r/sommerfeldio/source2docs[published to DockerHub]
+# as ``sommerfeldio/source2docs``.
+#
 # == About the tags and versions
 #
 # include::ROOT:partial$/docker-tag-strategy.adoc[]
@@ -36,6 +39,8 @@
 #
 # The xref:AUTO-GENERATED:src/main/docker/source2docs/entrypoint-sh.adoc[src/main/docker/source2docs/entrypoint.sh]
 # script serves as the entrypoint for this Docker image.
+#
+# For Docker image sources, see https://github.com/sommerfeld-io/docker-images/tree/main/src/main.
 
 
 FROM bitnami/git:2.42.0-debian-11-r23

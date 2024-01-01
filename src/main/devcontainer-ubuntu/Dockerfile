@@ -46,6 +46,10 @@
 # 	"postCreateCommand": "pre-commit install"
 # }
 # ```
+#
+# == See also
+#
+# For Docker image sources, see https://github.com/sommerfeld-io/docker-images/tree/main/src/main.
 
 
 FROM mcr.microsoft.com/devcontainers/base:ubuntu-22.04

@@ -1,7 +1,6 @@
 Collection of Docker images for various purposes.
 
 image:{github-actions-url}/{job-generate-docs}/{badge}[Github Badge, link={github-actions-url}/{job-generate-docs}]
-image:{github-actions-url}/{job-lint}/{badge}[Github Badge, link={github-actions-url}/{job-lint}]
 image:{github-actions-url}/{job-build}/{badge}[Github Badge, link={github-actions-url}/{job-build}]
 
 == About this project
@@ -13,16 +12,7 @@ Foremost, it's worth noting that the initial setup phase is expected to conclude
 * Where to file issues -> {url-project}/issues
 
 == Docker Images
-The Visual Studio Code Dev Containers extension lets you use a container as a full-featured development environment. It allows you to open any folder inside (or mounted into) a container and take advantage of Visual Studio Code's full feature set. This lets VS Code provide a local-quality development experience including full IntelliSense (completions), code navigation, and debugging regardless of where your tools (or code) are located.
-
-* https://hub.docker.com/r/sommerfeldio/devcontainer-go
-* https://hub.docker.com/r/sommerfeldio/devcontainer-ubuntu
-
-This repository also is a compilation of Docker images primed for utilization within GitHub Actions workflows (although standalone usage is also possible).
-
-* https://hub.docker.com/r/sommerfeldio/folderslint
-* https://hub.docker.com/r/sommerfeldio/ftp-client
-* https://hub.docker.com/r/sommerfeldio/jq
+include::AUTO-GENERATED:partial$/nav-dockerfile.adoc[]
 
 === About the tags and versions
 include::ROOT:partial$/docker-tag-strategy.adoc[]

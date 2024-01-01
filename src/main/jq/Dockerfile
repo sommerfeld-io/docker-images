@@ -8,6 +8,10 @@
 # == About the tags and versions
 #
 # include::ROOT:partial$/docker-tag-strategy.adoc[]
+#
+# == See also
+#
+# For Docker image sources, see https://github.com/sommerfeld-io/docker-images/tree/main/src/main.
 
 
 FROM ubuntu:24.04

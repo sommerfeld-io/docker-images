@@ -30,6 +30,10 @@
 #     - name: Run folderslint in container
 #       run: docker run -i --rm --volume "$(pwd):$(pwd)" --workdir "$(pwd)" sommerfeldio/folderslint:latest
 # ```
+#
+# == See also
+#
+# For Docker image sources, see https://github.com/sommerfeld-io/docker-images/tree/main/src/main.
 
 
 FROM node:21.5.0-alpine

@@ -2,7 +2,6 @@ Sebastian Sommerfeld <sebastian@sommerfeld.io>
 :project-name: docker-images
 :url-project: https://github.com/sommerfeld-io/{project-name}
 :github-actions-url: {url-project}/actions/workflows
-:job-lint: lint.yml
 :job-build: build.yml
 :job-generate-docs: generate-docs.yml
 :badge: badge.svg
