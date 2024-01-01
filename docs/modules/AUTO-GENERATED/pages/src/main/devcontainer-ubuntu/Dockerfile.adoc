@@ -50,3 +50,7 @@ inside the devcontainer and initializes `pre-commit` once the container is creat
 "postCreateCommand": "pre-commit install"
 }
 ----
+
+== See also
+
+For Docker image sources, see https://github.com/sommerfeld-io/docker-images/tree/main/src/main.
