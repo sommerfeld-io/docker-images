@@ -55,5 +55,4 @@ build: test
 	docker compose build --no-cache
 
 clean:
-	@echo "[INFO] Remove containers"
 	docker compose down --rmi all --volumes --remove-orphans
