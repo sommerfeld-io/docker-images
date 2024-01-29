@@ -35,6 +35,7 @@
 # ```
 # docker build -t local/qodana:dev .
 #
+# # Run the previously built local image
 # touch qodana.sarif.json && docker run --rm -it -p 8080:8080 \
 #   --volume "$(pwd):/data/project" \
 #   --volume "$(pwd)/qodana.sarif.json:/data/results/qodana.sarif.json:rw" \
@@ -42,6 +43,7 @@
 #       --property=idea.suppressed.plugins.id=com.intellij.gradle,org.jetbrains.plugins.gradle \
 #       --show-report
 #
+# # Run the image from DockerHub
 # touch qodana.sarif.json && docker run --rm -it -p 8080:8080 \
 #   --volume "$(pwd):/data/project" \
 #   --volume "$(pwd)/qodana.sarif.json:/data/results/qodana.sarif.json:rw" \
