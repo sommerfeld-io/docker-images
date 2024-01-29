@@ -43,6 +43,11 @@ services:
     build: src/main/jq
     image: local/jq:dev
 
+  qodana:
+    container_name: qodana
+    build: src/main/qodana
+    image: local/qodana:dev
+
   source2docs:
     container_name: source2docs
     build: src/main/source2docs
