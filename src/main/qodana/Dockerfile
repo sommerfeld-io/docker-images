@@ -1,8 +1,12 @@
 # @file Dockerfile
-# @brief ...
+# @brief Extension of the official JetBrains Qodana image to allow Asciidoc validation.
 #
-# @description ...
-# todo ... write description and brief (above)
+# @description This Docker image is set up to offer an installation of Qodana,
+# utilizing the official image provided by JetBrains. In addition to the base image,
+# this customized Docker image includes specific plugins that enable validation for
+# AsciiDoc and grammar. Essentially, it extends the functionality of the original
+# JetBrains image by incorporating these additional plugins for more comprehensive
+# validation capabilities.
 #
 # == Prerequisites
 #
