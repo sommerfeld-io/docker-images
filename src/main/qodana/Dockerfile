@@ -10,24 +10,22 @@
 #
 # == Prerequisites
 #
-# This image has been developed and tested with Docker version 24.0.2 on top of Ubuntu 22.10.
+# This image has been developed and tested with Docker version 24.0.2 on top of Ubuntu 23.10.
 #
 # == About the tags and versions
 #
-# This Docker image follows a tagging convention based on semantic versioning. Each
-# stable version of the image is tagged with a specific semantic version (e.g.
-# ``:v0.2.0``), while the ``:latest`` tag always points to the most recent stable
-# version.
+# Docker images follow a tagging convention based on semantic versioning. Each stable
+# version of an image is tagged with a specific semantic version (e.g. ``:v0.2.0``), while
+# the ``:latest`` tag always points to the most recent stable version.
 #
-# Unstable versions are marked with a suffix (``-alpha.0``, ``-beta.0`` or ``-rc.0``).
-# These versions usually are used for development or testing purposes. These versions
-# are not recommended for production use. ``:latest`` never points to an unstable
+# Unstable pre-release versions are marked with a suffix (``-alpha.0``, ``-beta.1``). These
+# versions usually are used for development, testing, review and approval purposes. These
+# versions are not recommended for production use. ``:latest`` never points to an unstable
 # pre-release.
 #
-# The image may have a ``:main`` tag, which represents an unstable build. These versions
-# come from CI builds and/or nightly builds and are useful for continuous integration
-# and testing purposes. The ``:main`` tag is never meant for production use and may
-# contain experimental features or unresolved issues.
+# Images also have an ``:rc`` tag, which contains the most recent feature set from the
+# ``main`` branch. This feature set is not yet released, but based on our approach is in a
+# releasable state. Other Branches do not publish their own image versions to DockerHub.
 #
 # == How to use this image
 #
