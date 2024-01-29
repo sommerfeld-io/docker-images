@@ -57,8 +57,8 @@
 #
 # It is recommended to add the ``qodana.sarif.json`` to your ``.gitignore`` file.
 #
-# To use the image in GitHub Actions workflows, omitt the ``--show-report`` flag. Also remember
-# that with GutHub Actions the the input device is not a TTY.
+# To use the image in GitHub Actions workflows, omitt the ``--show-report`` and ``-p 8080:8080`` flags.
+# Also remember that with GutHub Actions the the input device is not a TTY.
 #
 # == See also
 #
