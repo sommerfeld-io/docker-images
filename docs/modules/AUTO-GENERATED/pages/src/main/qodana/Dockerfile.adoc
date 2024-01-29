@@ -1,11 +1,15 @@
 = Dockerfile
 
-...
+Extension of the official JetBrains Qodana image to allow Asciidoc validation.
 
 == Overview
 
-...
-todo ... write description and brief (above)
+This Docker image is set up to offer an installation of Qodana,
+utilizing the official image provided by JetBrains. In addition to the base image,
+this customized Docker image includes specific plugins that enable validation for
+AsciiDoc and grammar. Essentially, it extends the functionality of the original
+JetBrains image by incorporating these additional plugins for more comprehensive
+validation capabilities.
 
 == Prerequisites
 
@@ -57,7 +61,8 @@ behavior) creates a folder which causes Qodana to crash.
 
 It is recommended to add the `qodana.sarif.json` to your `.gitignore` file.
 
-To use the image in GitHub Actions workflows, omitt the `--show-report` flag.
+To use the image in GitHub Actions workflows, omit the `--show-report` and `-p 8080:8080` flags.
+Also remember that with GutHub Actions the the input device is not a TTY.
 
 == See also
 
