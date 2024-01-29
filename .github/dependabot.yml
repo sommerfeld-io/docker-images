@@ -26,6 +26,10 @@ updates:
     schedule:
       interval: weekly
   - package-ecosystem: docker
+    directory: src/main/qodana
+    schedule:
+      interval: weekly
+  - package-ecosystem: docker
     directory: src/main/source2docs
     schedule:
       interval: weekly
