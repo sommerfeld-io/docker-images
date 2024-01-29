@@ -4,3 +4,4 @@
 * xref:AUTO-GENERATED:src/main/source2docs/Dockerfile.adoc[src/main/source2docs/Dockerfile]
 * xref:AUTO-GENERATED:src/main/ftp-client/Dockerfile.adoc[src/main/ftp-client/Dockerfile]
 * xref:AUTO-GENERATED:src/main/devcontainer-ubuntu/Dockerfile.adoc[src/main/devcontainer-ubuntu/Dockerfile]
+* xref:AUTO-GENERATED:src/main/qodana/Dockerfile.adoc[src/main/qodana/Dockerfile]
