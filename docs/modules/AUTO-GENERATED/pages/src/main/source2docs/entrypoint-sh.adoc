@@ -13,7 +13,7 @@ filenames and generates Asciidoc files from the source codes inline documentatio
 
 === Script Arguments
 
-The script does not accept any parameters.
+* _$1_ (string): Path to the docs folder (optional) - if empty, a `docs` folder in project root is expected
 
 == Index
 
