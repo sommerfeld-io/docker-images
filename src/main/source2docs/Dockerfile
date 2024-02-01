@@ -23,7 +23,11 @@
 #
 # [source, bash]
 # ```
+# # Run with default "docs" folder in project root
 # docker run --rm --user "$(id -u):$(id -g)"  --volume /etc/timezone:/etc/timezone:ro  --volume /etc/localtime:/etc/localtime:ro  --volume "$(pwd):/project"  --workdir "/project"  sommerfeldio/source2docs:latest
+#
+# # Override the docs folder path
+# docker run --rm --user "$(id -u):$(id -g)"  --volume /etc/timezone:/etc/timezone:ro  --volume /etc/localtime:/etc/localtime:ro  --volume "$(pwd):/project"  --workdir "/project"  sommerfeldio/source2docs:latest components/docs
 # ```
 #
 # NOTE: Run this image from the root of your project. Do not change the volume bind from

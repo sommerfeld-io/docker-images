@@ -11,7 +11,15 @@
 #
 # === Script Arguments
 #
-# The script does not accept any parameters.
+# * *$1* (string): Path to the docs folder (optional) - if empty, a ``docs`` folder in project root is expected
+
+
+DOCS_ROOT_FOLDER="docs"
+if [ -n "$1" ]; then
+    echo -e "$LOG_INFO Set documentation root folder to $1"
+    DOCS_ROOT_FOLDER="$1"
+fi
+readonly DOCS_ROOT_FOLDER
 
 
 set -o errexit
@@ -21,9 +29,9 @@ set -o nounset
 
 
 # constants
-readonly ANTORA_YML="docs/antora.yml"
+readonly ANTORA_YML="$DOCS_ROOT_FOLDER/antora.yml"
 readonly ANTORA_MODULE_NAME="AUTO-GENERATED"
-readonly ANTORA_MODULE="docs/modules/$ANTORA_MODULE_NAME"
+readonly ANTORA_MODULE="$DOCS_ROOT_FOLDER/modules/$ANTORA_MODULE_NAME"
 export ANTORA_YML
 export ANTORA_MODULE_NAME
 export ANTORA_MODULE
@@ -61,14 +69,14 @@ function checkCurrentDirectory() {
     echo "[INFO] Check current directory"
 
     declare -a MANDATORY_FOLDERS=(
-        "docs"
-        "docs/modules"
-        "docs/modules/ROOT"
+        "$DOCS_ROOT_FOLDER"
+        "$DOCS_ROOT_FOLDER/modules"
+        "$DOCS_ROOT_FOLDER/modules/ROOT"
     )
 
     for mandatory in "${MANDATORY_FOLDERS[@]}"; do
         if [ ! -d "$mandatory" ]; then
-            echo "[ERROR] Expected subdirectory '$mandatory' to exist"
+            echo "[ERROR] Expected directory '$mandatory' to exist"
             echo "[ERROR] exit" && exit 1
         fi
     done
