@@ -51,7 +51,7 @@
 # For Docker image sources, see https://github.com/sommerfeld-io/docker-images/tree/main/src/main.
 
 
-FROM mcr.microsoft.com/devcontainers/go:1.21-bullseye
+FROM mcr.microsoft.com/devcontainers/go:1.22-bullseye
 LABEL maintainer="sebastian@sommerfeld.io"
 
 ARG USER=vscode
