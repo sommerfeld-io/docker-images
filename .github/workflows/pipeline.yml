@@ -204,18 +204,25 @@ jobs:
         include:
           - registry: docker.io
             image-name: devcontainer-go
+            context: src/main/devcontainer-go
           - registry: docker.io
             image-name: devcontainer-ubuntu
+            context: src/main/devcontainer-ubuntu
           - registry: docker.io
             image-name: folderslint
+            context: src/main/folderslint
           - registry: docker.io
             image-name: ftp-client
+            context: src/main/ftp-client
           - registry: docker.io
             image-name: jq
+            context: src/main/jq
           - registry: docker.io
             image-name: qodana
+            context: src/main/qodana
           - registry: docker.io
             image-name: source2docs
+            context: src/main/source2docs
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
