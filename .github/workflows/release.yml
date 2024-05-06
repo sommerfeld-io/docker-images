@@ -27,7 +27,7 @@
 # versions.
 
 
-name: Deploy + Release
+name: Release
 
 on:
   workflow_dispatch:

@@ -1,2 +1,33 @@
-= Startpage
-include::ROOT:partial$README.adoc[]
+= Docker Images Docs
+Sebastian Sommerfeld <sebastian@sommerfeld.io>
+:project-name: docker-images
+:url-project: https://github.com/sommerfeld-io/{project-name}
+:github-actions-url: {url-project}/actions/workflows
+:job-build: build.yml
+:job-generate-docs: generate-docs.yml
+:badge: badge.svg
+
+Collection of Docker images for various purposes.
+
+image:{github-actions-url}/{job-generate-docs}/{badge}[Github Badge, link={github-actions-url}/{job-generate-docs}]
+image:{github-actions-url}/{job-build}/{badge}[Github Badge, link={github-actions-url}/{job-build}]
+
+== About this project
+In standard practice, individual Docker images would typically have their own dedicated repositories and distinct versioning. However, in this particular case, the decision to consolidate these images within a single repository is based on a combination of factors.
+
+Foremost, it's worth noting that the initial setup phase is expected to conclude with relatively few releases in the foreseeable future. This projection supports the rationale behind merging the images into a common repository, although this approach results in all images receiving new version tags even if only one has been modified.
+
+* Github Repository -> {url-project}
+* Where to file issues -> {url-project}/issues
+
+== Docker Images
+include::AUTO-GENERATED:partial$/nav-dockerfile.adoc[]
+
+=== About the tags and versions
+include::ROOT:partial$/docker-tag-strategy.adoc[]
+
+== Risks and Technical Debts
+link:{url-project}/issues?q=is%3Aissue+label%3Asecurity%2Crisk+is%3Aopen[All issues labeled as `risk` (= some sort of risk or a technical debt) or `security` (= related to security issues)] are tracked as Github issues and carry the respective label.
+
+== Contact
+Feel free to contact me via sebastian@sommerfeld.io or visit my website https://www.sommerfeld.io.
