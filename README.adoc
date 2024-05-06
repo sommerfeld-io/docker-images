@@ -1,4 +1,4 @@
-= docker-images
+= Docker Images Docs
 Sebastian Sommerfeld <sebastian@sommerfeld.io>
 :project-name: docker-images
 :url-project: https://github.com/sommerfeld-io/{project-name}
