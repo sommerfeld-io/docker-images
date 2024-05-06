@@ -197,48 +197,74 @@ jobs:
     needs: ['generate-docs']
     permissions:
       contents: read
+      pull-requests: write
+      security-events: write
     strategy:
       matrix:
-        image-name: ['devcontainer-go', 'devcontainer-ubuntu', 'folderslint', 'ftp-client', 'jq', 'qodana', 'source2docs']
+        include:
+          - registry: docker.io
+            image-name: devcontainer-go
+          - registry: docker.io
+            image-name: devcontainer-ubuntu
+          - registry: docker.io
+            image-name: folderslint
+          - registry: docker.io
+            image-name: ftp-client
+          - registry: docker.io
+            image-name: jq
+          - registry: docker.io
+            image-name: qodana
+          - registry: docker.io
+            image-name: source2docs
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: hadolint
         uses: hadolint/hadolint-action@v3.1.0
         with:
-          dockerfile: src/main/${{ matrix.image-name }}/Dockerfile
-      - name: Set docker tag ('edge' for main or feature branch)
-        id: vars
-        run: |
-          echo "Ref = ${{ github.ref }}"
-          echo "Ref Name = $GITHUB_REF_NAME"
-          echo "Head Ref = $GITHUB_HEAD_REF"
-
-          # TAG="$GITHUB_REF_NAME"
-          # if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-          #   TAG="$GITHUB_HEAD_REF"
-          # fi
-
-          TAG='rc'
-
-          echo "tag = $TAG"
-          echo "DOCKER_TAG=$TAG" >> $GITHUB_OUTPUT
-        shell: bash
+          dockerfile: ${{ matrix.context }}/Dockerfile
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-      - name: Login to DockerHub
+      - name: Login to Container Registry ${{ matrix.registry }}
         uses: docker/login-action@v3
-        if: ${{ github.actor != 'dependabot[bot]' }}
         with:
+          registry: ${{ matrix.registry }}
           username: ${{ secrets.DOCKERHUB_USER }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Docker image build
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5.5.1
+        with:
+          images: ${{ matrix.registry }}/${{ secrets.DOCKERHUB_USER }}/${{ matrix.image-name }}
+          labels: |
+            org.opencontainers.image.revision=${{ github.sha }}
+      - name: Build the Docker image and push to ${{ matrix.registry }}
         uses: docker/build-push-action@v5
         with:
-          context: src/main/${{ matrix.image-name }}
+          context: ${{ matrix.context }}
           platforms: linux/amd64
-          push: ${{ (github.actor != 'dependabot[bot]') && (github.ref == 'refs/heads/main') }}
-          tags: ${{ secrets.DOCKERHUB_USER }}/${{ matrix.image-name }}:${{ steps.vars.outputs.DOCKER_TAG }}
+          push: true
+          tags: ${{ matrix.registry }}/${{ secrets.DOCKERHUB_USER }}/${{ matrix.image-name }}:${{ github.sha }}
+          labels: ${{ steps.meta.outputs.labels }}
+          # cache-from: type=gha
+          # cache-to: type=gha,mode=max
+          provenance: true
+          sbom: true
+      - name: Docker Scout CVEs for :${{ github.sha }}
+        uses: docker/scout-action@v1.8.0
+        with:
+          command: cves
+          image: ${{ matrix.registry }}/${{ secrets.DOCKERHUB_USER }}/${{ matrix.image-name }}:${{ github.sha }}
+          exit-code: false
+          write-comment: ${{ github.event_name == 'pull_request' }}
+      - name: Docker Scout Compare :${{ github.sha }} to :${{ env.IMAGE_TAG_RC }}"
+        uses: docker/scout-action@v1.8.0
+        with:
+          command: compare
+          image: ${{ matrix.registry }}/${{ secrets.DOCKERHUB_USER }}/${{ matrix.image-name }}:${{ github.sha }}
+          to: ${{ matrix.registry }}/${{ secrets.DOCKERHUB_USER }}/${{ matrix.image-name }}:${{ env.IMAGE_TAG_RC }}
+          exit-code: false
+          write-comment: ${{ github.event_name == 'pull_request' }}
 
   # ----- Test stage ----------------------------
 
