@@ -60,7 +60,6 @@ SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN chsh --shell /bin/bash "$USER" \
     && echo "alias ls='ls -a'" >> "/home/$USER/.bashrc" \
     && echo "alias ll='ls -alF'" >> "/home/$USER/.bashrc" \
-    && curl https://raw.githubusercontent.com/sebastian-sommerfeld-io/jarvis/main/src/main/install.sh | bash - \
     && apt-get update \
     && apt-get install -y --no-install-recommends python3-pip=20.3.4-4+deb11u1 \
     && apt-get clean \
