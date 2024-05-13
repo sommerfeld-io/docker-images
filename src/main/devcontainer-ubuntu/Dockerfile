@@ -52,7 +52,7 @@
 # For Docker image sources, see https://github.com/sommerfeld-io/docker-images/tree/main/src/main.
 
 
-FROM mcr.microsoft.com/devcontainers/base:ubuntu-22.04
+FROM mcr.microsoft.com/devcontainers/base:ubuntu-24.04
 LABEL maintainer="sebastian@sommerfeld.io"
 
 ARG USER=vscode
