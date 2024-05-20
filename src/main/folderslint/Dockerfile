@@ -36,7 +36,7 @@
 # For Docker image sources, see https://github.com/sommerfeld-io/docker-images/tree/main/src/main.
 
 
-FROM node:22.1.0-alpine
+FROM node:22.2.0-alpine
 LABEL maintainer="sebastian@sommerfeld.io"
 
 RUN npm install --location=global folderslint@1.2.0
