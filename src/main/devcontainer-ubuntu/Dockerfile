@@ -57,13 +57,14 @@ LABEL maintainer="sebastian@sommerfeld.io"
 
 ARG USER=vscode
 
-SHELL ["/bin/bash", "-o", "pipefail", "-c"]
-RUN chsh --shell /bin/bash "$USER" \
-    && echo "alias ls='ls -a --color=auto'" >> "/home/$USER/.bashrc" \
-    && echo "alias ll='ls -alF --color=auto'" >> "/home/$USER/.bashrc" \
-    && curl https://raw.githubusercontent.com/sebastian-sommerfeld-io/jarvis/main/src/main/install.sh | bash - \
-    && apt-get update \
-    && apt-get install -y --no-install-recommends python3-pip=22.0.2+dfsg-1ubuntu0.4 \
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends python3-pip=24.0+dfsg-1ubuntu1 \
+    && apt-get install -y --no-install-recommends pre-commit \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && pip install --no-cache-dir pre-commit==3.3.3
+    && rm -rf /var/lib/apt/lists/*
+
+USER $USER
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+RUN echo "alias ls='ls -a --color=auto'" >> /home/$USER/.bashrc \
+    && echo "alias ll='ls -alF --color=auto'" >> /home/$USER/.bashrc
