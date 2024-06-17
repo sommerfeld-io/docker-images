@@ -60,7 +60,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Run yamllint
-        run: make lint-yaml
+        run: docker compose up lint-yaml --exit-code-from lint-yaml
         shell: bash
 
   lint-folders:
@@ -69,7 +69,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Run folderslint in container
-        run: make lint-folders
+        run: docker compose up lint-folders --exit-code-from lint-folders
         shell: bash
 
   lint-filenames:
@@ -78,7 +78,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Run ls-lint in container
-        run: make lint-filenames
+        run: docker compose up lint-filenames --exit-code-from lint-filenames
         shell: bash
 
   shellcheck:
@@ -91,22 +91,13 @@ jobs:
         with:
           ignore_paths: node_modules target
 
-  lint-makefile:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Run checkmake in container
-        run: make lint-makefile
-        shell: bash
-
   # ----- Commit stage (docs) -------------------
 
   update-versions:
     runs-on: ubuntu-latest
     name: ${{ matrix.yml-file }}
     if: ${{ (github.actor != 'dependabot[bot]') }}
-    needs: ['lint-yaml', 'lint-folders', 'lint-filenames', 'shellcheck', 'lint-makefile']
+    needs: ['lint-yaml', 'lint-folders', 'lint-filenames', 'shellcheck']
     strategy:
       matrix:
         yml-file: ['docs/antora.yml']
@@ -353,7 +344,6 @@ jobs:
       'lint-folders',
       'lint-filenames',
       'shellcheck',
-      'lint-makefile',
       'build-images',
       'inspec-tests',
       'publish-rc',

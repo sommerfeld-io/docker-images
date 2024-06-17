@@ -12,43 +12,151 @@
 #
 # == How to Use
 #
-# Make sure to control the image builds and containers by using the xref:AUTO-GENERATED:Makefile.adoc[Makefile].
+# ``docker compose up``
 
 
-version: "3.3"
 services:
+
+  lint-yaml:
+    container_name: ${COMPOSE_PROJECT_NAME}-lint-yaml
+    image: cytopia/yamllint:latest
+    volumes:
+      - .:/workspaces/docker-images
+    working_dir: /workspaces/docker-images
+    command: .
+    tty: true
+
+  lint-filenames:
+    container_name: ${COMPOSE_PROJECT_NAME}-lint-filenames
+    image: lslintorg/ls-lint:1.11.2
+    volumes:
+      - .:/workspaces/docker-images
+    working_dir: /workspaces/docker-images
+
+  lint-folders:
+    container_name: ${COMPOSE_PROJECT_NAME}-lint-folders
+    image: sommerfeldio/folderslint:latest
+    volumes:
+      - .:/workspaces/docker-images
+    working_dir: /workspaces/docker-images
+    command: .
+    tty: true
+
+  # -----------------------------------------------------------------------------------------------
+
+  lint-dockerfile-devcontainer-go:
+    container_name: ${COMPOSE_PROJECT_NAME}-lint-dockerfile-devcontainer-go
+    image: hadolint/hadolint:latest
+    volumes:
+      - .:/workspaces/docker-images
+    working_dir: /workspaces/docker-images
+    entrypoint: hadolint src/main/devcontainer-go/Dockerfile
 
   devcontainer-go:
     container_name: devcontainer-go
     build: src/main/devcontainer-go
-    image: local/devcontainer-go:dev
+    image: local/devcontainer-go:${DEV_TAG}
+    depends_on:
+      - lint-dockerfile-devcontainer-go
+
+  # -----------------------------------------------------------------------------------------------
+
+  lint-dockerfile-devcontainer-ubuntu:
+    container_name: ${COMPOSE_PROJECT_NAME}-lint-dockerfile-devcontainer-ubuntu
+    image: hadolint/hadolint:latest
+    volumes:
+      - .:/workspaces/docker-images
+    working_dir: /workspaces/docker-images
+    entrypoint: hadolint src/main/devcontainer-ubuntu/Dockerfile
 
   devcontainer-ubuntu:
     container_name: devcontainer-ubuntu
     build: src/main/devcontainer-ubuntu
-    image: local/devcontainer-ubuntu:dev
+    image: local/devcontainer-ubuntu:${DEV_TAG}
+    depends_on:
+      - lint-dockerfile-devcontainer-ubuntu
+
+  # -----------------------------------------------------------------------------------------------
+
+  lint-dockerfile-folderslint:
+    container_name: ${COMPOSE_PROJECT_NAME}-lint-dockerfile-folderslint
+    image: hadolint/hadolint:latest
+    volumes:
+      - .:/workspaces/docker-images
+    working_dir: /workspaces/docker-images
+    entrypoint: hadolint src/main/folderslint/Dockerfile
 
   folderslint:
     container_name: folderslint
     build: src/main/folderslint
-    image: local/folderslint:dev
+    image: local/folderslint:${DEV_TAG}
+    depends_on:
+      - lint-dockerfile-folderslint
+
+  # -----------------------------------------------------------------------------------------------
+
+  lint-dockerfile-ftp-client:
+    container_name: ${COMPOSE_PROJECT_NAME}-lint-dockerfile-ftp-client
+    image: hadolint/hadolint:latest
+    volumes:
+      - .:/workspaces/docker-images
+    working_dir: /workspaces/docker-images
+    entrypoint: hadolint src/main/ftp-client/Dockerfile
 
   ftp-client:
     container_name: ftp-client
     build: src/main/ftp-client
-    image: local/ftp-client:dev
+    image: local/ftp-client:${DEV_TAG}
+    depends_on:
+      - lint-dockerfile-ftp-client
+
+  # -----------------------------------------------------------------------------------------------
+
+  lint-dockerfile-jq:
+    container_name: ${COMPOSE_PROJECT_NAME}-lint-dockerfile-jq
+    image: hadolint/hadolint:latest
+    volumes:
+      - .:/workspaces/docker-images
+    working_dir: /workspaces/docker-images
+    entrypoint: hadolint src/main/jq/Dockerfile
 
   jq:
     container_name: jq
     build: src/main/jq
-    image: local/jq:dev
+    image: local/jq:${DEV_TAG}
+    depends_on:
+      - lint-dockerfile-jq
+
+  # -----------------------------------------------------------------------------------------------
+
+  lint-dockerfile-qodana:
+    container_name: ${COMPOSE_PROJECT_NAME}-lint-dockerfile-qodana
+    image: hadolint/hadolint:latest
+    volumes:
+      - .:/workspaces/docker-images
+    working_dir: /workspaces/docker-images
+    entrypoint: hadolint src/main/qodana/Dockerfile
 
   qodana:
     container_name: qodana
     build: src/main/qodana
-    image: local/qodana:dev
+    image: local/qodana:${DEV_TAG}
+    depends_on:
+      - lint-dockerfile-qodana
+
+  # -----------------------------------------------------------------------------------------------
+
+  lint-dockerfile-source2docs:
+    container_name: ${COMPOSE_PROJECT_NAME}-lint-dockerfile-source2docs
+    image: hadolint/hadolint:latest
+    volumes:
+      - .:/workspaces/docker-images
+    working_dir: /workspaces/docker-images
+    entrypoint: hadolint src/main/source2docs/Dockerfile
 
   source2docs:
     container_name: source2docs
     build: src/main/source2docs
-    image: local/source2docs:dev
+    image: local/source2docs:${DEV_TAG}
+    depends_on:
+      - lint-dockerfile-source2docs

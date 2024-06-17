@@ -31,5 +31,5 @@ repos:
     hooks:
       - id: lint-and-test
         name: lint-and-test
-        entry: bash -c 'make'
+        entry: bash -c 'docker compose up'
         language: system

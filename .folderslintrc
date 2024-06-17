@@ -14,6 +14,7 @@
     "docs/modules/*/partials/**",
 
     "src/main/**",
+    "src/test/**",
 
     "node_modules/**",
     "target/**"
