@@ -29,7 +29,61 @@ repos:
       - id: detect-private-key
   - repo: local
     hooks:
-      - id: lint-and-test
-        name: lint-and-test
-        entry: bash -c 'docker compose up'
+      - id: lint-yaml
+        name: lint-yaml
+        entry: bash -c 'docker compose up lint-yaml --exit-code-from lint-yaml'
+        language: system
+  - repo: local
+    hooks:
+      - id: lint-filenames
+        name: lint-filenames
+        entry: bash -c 'docker compose up lint-filenames --exit-code-from lint-filenames'
+        language: system
+  - repo: local
+    hooks:
+      - id: lint-folders
+        name: lint-folders
+        entry: bash -c 'docker compose up lint-folders --exit-code-from lint-folders'
+        language: system
+  - repo: local
+    hooks:
+      - id: lint-dockerfile-devcontainer-go
+        name: lint-dockerfile-devcontainer-go
+        entry: bash -c 'docker compose up lint-dockerfile-devcontainer-go --exit-code-from lint-dockerfile-devcontainer-go'
+        language: system
+  - repo: local
+    hooks:
+      - id: lint-dockerfile-devcontainer-ubuntu
+        name: lint-dockerfile-devcontainer-ubuntu
+        entry: bash -c 'docker compose up lint-dockerfile-devcontainer-ubuntu --exit-code-from lint-dockerfile-devcontainer-ubuntu'
+        language: system
+  - repo: local
+    hooks:
+      - id: lint-dockerfile-folderslint
+        name: lint-dockerfile-folderslint
+        entry: bash -c 'docker compose up lint-dockerfile-folderslint --exit-code-from lint-dockerfile-folderslint'
+        language: system
+  - repo: local
+    hooks:
+      - id: lint-dockerfile-ftp-client
+        name: lint-dockerfile-ftp-client
+        entry: bash -c 'docker compose up lint-dockerfile-ftp-client --exit-code-from lint-dockerfile-ftp-client'
+        language: system
+  - repo: local
+    hooks:
+      - id: lint-dockerfile-jq
+        name: lint-dockerfile-jq
+        entry: bash -c 'docker compose up lint-dockerfile-jq --exit-code-from lint-dockerfile-jq'
+        language: system
+  - repo: local
+    hooks:
+      - id: lint-dockerfile-qodana
+        name: lint-dockerfile-qodana
+        entry: bash -c 'docker compose up lint-dockerfile-qodana --exit-code-from lint-dockerfile-qodana'
+        language: system
+  - repo: local
+    hooks:
+      - id: lint-dockerfile-source2docs
+        name: lint-dockerfile-source2docs
+        entry: bash -c 'docker compose up lint-dockerfile-source2docs --exit-code-from lint-dockerfile-source2docs'
         language: system

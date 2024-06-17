@@ -59,7 +59,7 @@ ARG USER=vscode
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends python3-pip=24.0+dfsg-1ubuntu1 \
-    && apt-get install -y --no-install-recommends pre-commit \
+    && apt-get install -y --no-install-recommends pre-commit=3.6.2-1 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
