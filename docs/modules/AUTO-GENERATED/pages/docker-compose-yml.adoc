@@ -14,4 +14,4 @@ Ubuntu 22.10.
 
 == How to Use
 
-Make sure to control the image builds and containers by using the xref:AUTO-GENERATED:Makefile.adoc[Makefile].
+`docker compose up`
