@@ -87,3 +87,9 @@ repos:
         name: lint-dockerfile-source2docs
         entry: bash -c 'docker compose up lint-dockerfile-source2docs --exit-code-from lint-dockerfile-source2docs'
         language: system
+  - repo: local
+    hooks:
+      - id: build-images
+        name: build-images
+        entry: bash -c 'docker compose build'
+        language: system
