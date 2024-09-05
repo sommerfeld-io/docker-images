@@ -37,11 +37,14 @@
 # We assume, that the tape file uses ``hello-world:latest``, so we pull the image first.
 #
 # [source, bash]
-# ....
+# ```
 # docker pull hello-world:latest
 #
-# docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v "$(pwd):$(pwd)" -w "$(pwd)" sommerfeldio/vhs4docker:latest demo.tape
-# ....
+# docker run --rm -v /var/run/docker.sock:/var/run/docker.sock \
+#   -v "$(pwd):$(pwd)" \
+#   -w "$(pwd)" \
+#   sommerfeldio/vhs4docker:latest demo.tape
+# ```
 #
 # === Record Docker that print a directory listing
 #
