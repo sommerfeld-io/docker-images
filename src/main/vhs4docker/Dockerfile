@@ -30,6 +30,8 @@
 # Otherwise the recording would contain lines from the pull command (which most likely is not
 # desired). Normally, only the output from the ``docker run command`` should be recorded.
 #
+# image::https://raw.githubusercontent.com/sommerfeld-io/docker-images/main/src/main/vhs4docker/demo.gif[]
+#
 # For the ``demo.tape`` file, see https://github.com/sommerfeld-io/docker-images/tree/main/src/main/vhs4docker.
 #
 # [source, bash]
@@ -50,6 +52,8 @@
 # to specify this command in a ``.tape`` file. The ``docker run ...`` command for vhs4docker remains
 # the same. For information about tape files, see link:https://github.com/charmbracelet/vhs[docs of the official base image].
 #
+# image::https://raw.githubusercontent.com/sommerfeld-io/docker-images/main/src/main/vhs4docker/ls.gif[]
+#
 # Remember to mount the same directory into the vhs4docker container. Otherwise the command from
 # the tape file cannot access the files you expect.
 #
@@ -67,14 +71,34 @@
 #   sommerfeldio/vhs4docker:latest ls.tape
 # ....
 #
-# === Use with Docker Compose
+# === Record Docker that print a directory listing with Docker Compose
 #
 # For the ``ls.tape`` file, see https://github.com/sommerfeld-io/docker-images/tree/main/src/main/vhs4docker.
 #
-# [source, bash]
+# [source, yaml]
 # ....
-# TODO
+# services:
+#   pull-alpine:
+#     image: alpine:latest
+#
+#   vhs4docker:
+#     image: sommerfeldio/vhs4docker:latest
+#     volumes:
+#       - /var/run/docker.sock:/var/run/docker.sock
+#       - ./src/main/vhs4docker:/workspaces/docker-images/src/main/vhs4docker
+#     working_dir: /workspaces/docker-images/src/main/vhs4docker
+#     command: ls.tape
+#     depends_on:
+#       pull-alpine:
+#         condition: service_completed_successfully
 # ....
+#
+# [CAUTION]
+# ====
+# There seems to be an issue with the volume mounts. As soon as the path inside the container is
+# not absolute, the command specified in the tape file does not find any files or folders. This
+# to be further investigated.
+# ====
 #
 # === Build the image locally
 #

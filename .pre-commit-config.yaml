@@ -89,6 +89,12 @@ repos:
         language: system
   - repo: local
     hooks:
+      - id: lint-dockerfile-vhs4docker
+        name: lint-dockerfile-vhs4docker
+        entry: bash -c 'docker compose up lint-dockerfile-vhs4docker --exit-code-from lint-dockerfile-vhs4docker'
+        language: system
+  - repo: local
+    hooks:
       - id: build-images
         name: build-images
         entry: bash -c 'docker compose build'

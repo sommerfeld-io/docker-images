@@ -163,10 +163,6 @@ services:
 
   pull-alpine:
     image: alpine:latest
-    volumes:
-      - /workspaces/docker-images/src/main/vhs4docker:/vhs4docker
-    working_dir: &vhs4docker-workdir /vhs4docker
-    command: ls -alF
 
   vhs4docker:
     container_name: vhs4docker
@@ -174,8 +170,8 @@ services:
     image: local/vhs4docker:${DEV_TAG}
     volumes: &vhs4docker-volumes
       - /var/run/docker.sock:/var/run/docker.sock
-      - /workspaces/docker-images/src/main/vhs4docker:/vhs4docker
-    working_dir: *vhs4docker-workdir
+      - ./src/main/vhs4docker:/workspaces/docker-images/src/main/vhs4docker
+    working_dir: &vhs4docker-workdir /workspaces/docker-images/src/main/vhs4docker
     command: ls.tape
     depends_on:
       pull-alpine:
