@@ -34,16 +34,13 @@
 #
 # For the ``demo.tape`` file, see https://github.com/sommerfeld-io/docker-images/tree/main/src/main/vhs4docker.
 #
+# We assume, that the tape file uses ``hello-world:latest``, so we pull the image first.
+#
 # [source, bash]
 # ....
-# # we assume, that the tape file uses: hello-world:latest
 # docker pull hello-world:latest
 #
-# docker run --rm \
-#   --volume /var/run/docker.sock:/var/run/docker.sock \
-#   --volume "$(pwd):$(pwd)" \
-#   --workdir "$(pwd)" \
-#   sommerfeldio/vhs4docker:latest demo.tape
+# docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v "$(pwd):$(pwd)" -w "$(pwd)" sommerfeldio/vhs4docker:latest demo.tape
 # ....
 #
 # === Record Docker that print a directory listing
@@ -59,21 +56,20 @@
 #
 # For the ``ls.tape`` file, see https://github.com/sommerfeld-io/docker-images/tree/main/src/main/vhs4docker.
 #
+# We assume, that the tape file uses ``alpine:latest``, so we pull the image first.
+#
 # [source, bash]
 # ....
-# # we assume, that the tape file uses: alpine:latest
 # docker pull alpine:latest
 #
-# docker run --rm \
-#   --volume /var/run/docker.sock:/var/run/docker.sock \
-#   --volume "$(pwd):$(pwd)" \
-#   --workdir "$(pwd)" \
-#   sommerfeldio/vhs4docker:latest ls.tape
+# docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v "$(pwd):$(pwd)" -w "$(pwd)" sommerfeldio/vhs4docker:latest ls.tape
 # ....
 #
 # === Record Docker that print a directory listing with Docker Compose
 #
 # For the ``ls.tape`` file, see https://github.com/sommerfeld-io/docker-images/tree/main/src/main/vhs4docker.
+#
+# We assume, that the tape file uses ``alpine:latest``, so we pull the image first.
 #
 # [source, yaml]
 # ....
@@ -93,27 +89,18 @@
 #         condition: service_completed_successfully
 # ....
 #
-# [CAUTION]
-# ====
-# There seems to be an issue with the volume mounts. As soon as the path inside the container is
-# not absolute, the command specified in the tape file does not find any files or folders. This
-# to be further investigated.
-# ====
+# CAUTION: There seems to be an issue with the volume mounts. As soon as the path inside the container is not absolute, the command specified in the tape file does not find any files or folders. This to be further investigated.
 #
 # === Build the image locally
+#
+# We assume, that the tape file uses ``hello-world:latest``, so we pull the image first.
 #
 # [source, bash]
 # ....
 # docker build -t local/vhs4docker:dev .
-#
-# # we assume, that the tape file uses: hello-world:latest
 # docker pull hello-world:latest
 #
-# docker run --rm \
-#   --volume /var/run/docker.sock:/var/run/docker.sock \
-#   --volume "$(pwd):$(pwd)" \
-#   --workdir "$(pwd)" \
-#   local/vhs4docker:dev demo.tape
+# docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v "$(pwd):$(pwd)" -w "$(pwd)" local/vhs4docker:dev demo.tape
 # ....
 #
 # == Contact
