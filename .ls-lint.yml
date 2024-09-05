@@ -15,6 +15,9 @@ ls:
 
   .sh: kebab-case
 
+  .gif: kebab-case
+  .tape: kebab-case
+
   .css: kebab-case
   .html: kebab-case
   .js: kebab-case
@@ -43,6 +46,7 @@ ignore:
   - .ls-lint.yml
   - .pre-commit-config.yaml
   - .yamllint.yml
+  - .hadolint.yml
 
   # linter definitions
   - .adoc-links.json

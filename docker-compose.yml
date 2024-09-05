@@ -20,36 +20,33 @@ services:
   lint-yaml:
     container_name: ${COMPOSE_PROJECT_NAME}-lint-yaml
     image: cytopia/yamllint:latest
-    volumes:
+    volumes: &volumes
       - .:/workspaces/docker-images
-    working_dir: /workspaces/docker-images
+    working_dir: &workdir /workspaces/docker-images
     command: .
-    tty: true
+    tty: &tty true
 
   lint-filenames:
     container_name: ${COMPOSE_PROJECT_NAME}-lint-filenames
     image: lslintorg/ls-lint:1.11.2
-    volumes:
-      - .:/workspaces/docker-images
-    working_dir: /workspaces/docker-images
+    volumes: *volumes
+    working_dir: *workdir
 
   lint-folders:
     container_name: ${COMPOSE_PROJECT_NAME}-lint-folders
     image: sommerfeldio/folderslint:latest
-    volumes:
-      - .:/workspaces/docker-images
-    working_dir: /workspaces/docker-images
+    volumes: *volumes
+    working_dir: *workdir
     command: .
-    tty: true
+    tty: *tty
 
   # -----------------------------------------------------------------------------------------------
 
   lint-dockerfile-devcontainer-go:
     container_name: ${COMPOSE_PROJECT_NAME}-lint-dockerfile-devcontainer-go
-    image: hadolint/hadolint:latest
-    volumes:
-      - .:/workspaces/docker-images
-    working_dir: /workspaces/docker-images
+    image: &hadolint-image hadolint/hadolint:latest
+    volumes: *volumes
+    working_dir: *workdir
     entrypoint: hadolint src/main/devcontainer-go/Dockerfile
 
   devcontainer-go:
@@ -63,10 +60,9 @@ services:
 
   lint-dockerfile-devcontainer-ubuntu:
     container_name: ${COMPOSE_PROJECT_NAME}-lint-dockerfile-devcontainer-ubuntu
-    image: hadolint/hadolint:latest
-    volumes:
-      - .:/workspaces/docker-images
-    working_dir: /workspaces/docker-images
+    image: *hadolint-image
+    volumes: *volumes
+    working_dir: *workdir
     entrypoint: hadolint src/main/devcontainer-ubuntu/Dockerfile
 
   devcontainer-ubuntu:
@@ -80,10 +76,9 @@ services:
 
   lint-dockerfile-folderslint:
     container_name: ${COMPOSE_PROJECT_NAME}-lint-dockerfile-folderslint
-    image: hadolint/hadolint:latest
-    volumes:
-      - .:/workspaces/docker-images
-    working_dir: /workspaces/docker-images
+    image: *hadolint-image
+    volumes: *volumes
+    working_dir: *workdir
     entrypoint: hadolint src/main/folderslint/Dockerfile
 
   folderslint:
@@ -97,10 +92,9 @@ services:
 
   lint-dockerfile-ftp-client:
     container_name: ${COMPOSE_PROJECT_NAME}-lint-dockerfile-ftp-client
-    image: hadolint/hadolint:latest
-    volumes:
-      - .:/workspaces/docker-images
-    working_dir: /workspaces/docker-images
+    image: *hadolint-image
+    volumes: *volumes
+    working_dir: *workdir
     entrypoint: hadolint src/main/ftp-client/Dockerfile
 
   ftp-client:
@@ -114,10 +108,9 @@ services:
 
   lint-dockerfile-jq:
     container_name: ${COMPOSE_PROJECT_NAME}-lint-dockerfile-jq
-    image: hadolint/hadolint:latest
-    volumes:
-      - .:/workspaces/docker-images
-    working_dir: /workspaces/docker-images
+    image: *hadolint-image
+    volumes: *volumes
+    working_dir: *workdir
     entrypoint: hadolint src/main/jq/Dockerfile
 
   jq:
@@ -131,10 +124,9 @@ services:
 
   lint-dockerfile-qodana:
     container_name: ${COMPOSE_PROJECT_NAME}-lint-dockerfile-qodana
-    image: hadolint/hadolint:latest
-    volumes:
-      - .:/workspaces/docker-images
-    working_dir: /workspaces/docker-images
+    image: *hadolint-image
+    volumes: *volumes
+    working_dir: *workdir
     entrypoint: hadolint src/main/qodana/Dockerfile
 
   qodana:
@@ -148,10 +140,9 @@ services:
 
   lint-dockerfile-source2docs:
     container_name: ${COMPOSE_PROJECT_NAME}-lint-dockerfile-source2docs
-    image: hadolint/hadolint:latest
-    volumes:
-      - .:/workspaces/docker-images
-    working_dir: /workspaces/docker-images
+    image: *hadolint-image
+    volumes: *volumes
+    working_dir: *workdir
     entrypoint: hadolint src/main/source2docs/Dockerfile
 
   source2docs:
@@ -160,3 +151,44 @@ services:
     image: local/source2docs:${DEV_TAG}
     depends_on:
       - lint-dockerfile-source2docs
+
+  # -----------------------------------------------------------------------------------------------
+
+  lint-dockerfile-vhs4docker:
+    container_name: ${COMPOSE_PROJECT_NAME}-lint-dockerfile-vhs4docker
+    image: *hadolint-image
+    volumes: *volumes
+    working_dir: *workdir
+    entrypoint: hadolint src/main/vhs4docker/Dockerfile
+
+  pull-alpine:
+    image: alpine:latest
+    volumes:
+      - /workspaces/docker-images/src/main/vhs4docker:/vhs4docker
+    working_dir: &vhs4docker-workdir /vhs4docker
+    command: ls -alF
+
+  vhs4docker:
+    container_name: vhs4docker
+    build: src/main/vhs4docker
+    image: local/vhs4docker:${DEV_TAG}
+    volumes: &vhs4docker-volumes
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /workspaces/docker-images/src/main/vhs4docker:/vhs4docker
+    working_dir: *vhs4docker-workdir
+    command: ls.tape
+    depends_on:
+      pull-alpine:
+        condition: service_completed_successfully
+      lint-dockerfile-vhs4docker:
+        condition: service_completed_successfully
+
+  vhs4docker-demo:
+    container_name: vhs4docker-demo
+    image: local/vhs4docker:${DEV_TAG}
+    volumes: *vhs4docker-volumes
+    working_dir: *vhs4docker-workdir
+    command: demo.tape
+    depends_on:
+      vhs4docker:
+        condition: service_completed_successfully

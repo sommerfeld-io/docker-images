@@ -5,31 +5,43 @@ updates:
     directory: /
     schedule:
       interval: weekly
+
   - package-ecosystem: docker
     directory: src/main/devcontainer-go
     schedule:
       interval: weekly
+
   - package-ecosystem: docker
     directory: src/main/devcontainer-ubuntu
     schedule:
       interval: weekly
+
   - package-ecosystem: docker
     directory: src/main/folderslint
     schedule:
       interval: weekly
+
   - package-ecosystem: docker
     directory: src/main/ftp-client
     schedule:
       interval: weekly
+
   - package-ecosystem: docker
     directory: src/main/jq
     schedule:
       interval: weekly
+
   - package-ecosystem: docker
     directory: src/main/qodana
     schedule:
       interval: weekly
+
   - package-ecosystem: docker
     directory: src/main/source2docs
+    schedule:
+      interval: weekly
+
+  - package-ecosystem: docker
+    directory: src/main/vhs4docker
     schedule:
       interval: weekly

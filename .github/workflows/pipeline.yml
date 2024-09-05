@@ -54,31 +54,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-  lint-yaml:
+  lint:
     runs-on: ubuntu-latest
+    name: ${{ matrix.linter }}
+    strategy:
+      matrix:
+        linter: ['yaml', 'filenames', 'folders']
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Run yamllint
-        run: docker compose up lint-yaml --exit-code-from lint-yaml
-        shell: bash
-
-  lint-folders:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Run folderslint in container
-        run: docker compose up lint-folders --exit-code-from lint-folders
-        shell: bash
-
-  lint-filenames:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Run ls-lint in container
-        run: docker compose up lint-filenames --exit-code-from lint-filenames
+      - name: Run lint-${{ matrix.linter }} from docker-compose.yml
+        run: docker compose up lint-${{ matrix.linter }} --exit-code-from lint-${{ matrix.linter }}
         shell: bash
 
   shellcheck:
@@ -95,12 +81,10 @@ jobs:
 
   update-versions:
     runs-on: ubuntu-latest
-    name: ${{ matrix.yml-file }}
     if: ${{ (github.actor != 'dependabot[bot]') }}
-    needs: ['lint-yaml', 'lint-folders', 'lint-filenames', 'shellcheck']
-    strategy:
-      matrix:
-        yml-file: ['docs/antora.yml']
+    needs: ['lint', 'shellcheck']
+    env:
+      ANTORA_YML: docs/antora.yml
     permissions:
       contents: write
     steps:
@@ -111,21 +95,21 @@ jobs:
       - name: Print Branchname
         run: echo ${{github.ref}}
         shell: bash
-      - name: Adjust version in ${{ matrix.yml-file }}
+      - name: Adjust version in ${{ env.ANTORA_YML }}
         uses: sebastian-sommerfeld-io/github-action-update-antora-yml@main
         with:
           git_ref: ${{github.ref}}
-          file: ${{ matrix.yml-file }}
-      - name: Run yamllint for ${{ matrix.yml-file }}
+          file: ${{ env.ANTORA_YML }}
+      - name: Run yamllint for ${{ env.ANTORA_YML }}
         uses: ibiqlik/action-yamllint@v3
         with:
-          file_or_dir: ${{ matrix.yml-file }}
+          file_or_dir: ${{ env.ANTORA_YML }}
       - name: Commit and push
         uses: EndBug/add-and-commit@v9
         with:
           author_name: sebastian
           author_email: sebastian@sommerfeld.io
-          message: "[Actions Bot] update antora yml"
+          message: "docs: [Actions Bot] update antora yml"
 
   generate-docs:
     runs-on: ubuntu-latest
@@ -214,6 +198,9 @@ jobs:
           - registry: docker.io
             image-name: source2docs
             context: src/main/source2docs
+          - registry: docker.io
+            image-name: vhs4docker
+            context: src/main/vhs4docker
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -305,6 +292,8 @@ jobs:
             image-name: qodana
           - registry: docker.io
             image-name: source2docs
+          - registry: docker.io
+            image-name: vhs4docker
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -331,29 +320,3 @@ jobs:
       #     to: ${{ matrix.registry }}/${{ secrets.DOCKERHUB_USER }}/${{ matrix.image-name }}:${{ env.IMAGE_TAG_LATEST }}
       #     exit-code: false
       #     write-comment: ${{ github.event_name == 'pull_request' }}
-
-  # ----- Notifications -------------------------
-
-  on-failure:
-    runs-on: ubuntu-latest
-    needs: [
-      'update-versions',
-      'generate-docs',
-      'sonarcloud',
-      'lint-yaml',
-      'lint-folders',
-      'lint-filenames',
-      'shellcheck',
-      'build-images',
-      'inspec-tests',
-      'publish-rc',
-    ]
-    if: failure()
-    steps:
-      - name: Send Pipeline Status to Google Chat
-        if: always()
-        uses: Co-qn/google-chat-notification@releases/v1
-        with:
-          name: ${{ github.workflow }}
-          url: ${{ secrets.GOOGLE_CHAT_WEBHOOK }}
-          status: failure
