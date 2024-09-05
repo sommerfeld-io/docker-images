@@ -30,7 +30,7 @@
 # Otherwise the recording would contain lines from the pull command (which most likely is not
 # desired). Normally, only the output from the ``docker run command`` should be recorded.
 #
-# TODO For the ``demo.tape`` file, see .
+# For the ``demo.tape`` file, see https://github.com/sommerfeld-io/docker-images/tree/main/src/main/vhs4docker.
 #
 # [source, bash]
 # ....
@@ -53,7 +53,7 @@
 # Remember to mount the same directory into the vhs4docker container. Otherwise the command from
 # the tape file cannot access the files you expect.
 #
-# TODO For the ``ls.tape`` file, see .
+# For the ``ls.tape`` file, see https://github.com/sommerfeld-io/docker-images/tree/main/src/main/vhs4docker.
 #
 # [source, bash]
 # ....
@@ -69,7 +69,7 @@
 #
 # === Use with Docker Compose
 #
-# TODO For the ``ls.tape`` file, see .
+# For the ``ls.tape`` file, see https://github.com/sommerfeld-io/docker-images/tree/main/src/main/vhs4docker.
 #
 # [source, bash]
 # ....
