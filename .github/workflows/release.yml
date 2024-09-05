@@ -59,7 +59,7 @@ jobs:
     needs: ['update-version']
     strategy:
       matrix:
-        image: ['devcontainer-go', 'devcontainer-ubuntu', 'folderslint', 'ftp-client', 'jq', 'qodana', 'source2docs']
+        image: ['devcontainer-go', 'devcontainer-ubuntu', 'folderslint', 'ftp-client', 'jq', 'qodana', 'source2docs', 'vhs4docker']
     steps:
       - name: Login to DockerHub
         if: github.event.inputs.publish == 'true'
