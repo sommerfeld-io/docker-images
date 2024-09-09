@@ -1,4 +1,3 @@
-* xref:AUTO-GENERATED:src/main/vhs4docker/Dockerfile.adoc[src/main/vhs4docker/Dockerfile]
 * xref:AUTO-GENERATED:src/main/devcontainer-go/Dockerfile.adoc[src/main/devcontainer-go/Dockerfile]
 * xref:AUTO-GENERATED:src/main/qodana/Dockerfile.adoc[src/main/qodana/Dockerfile]
 * xref:AUTO-GENERATED:src/main/devcontainer-ubuntu/Dockerfile.adoc[src/main/devcontainer-ubuntu/Dockerfile]
