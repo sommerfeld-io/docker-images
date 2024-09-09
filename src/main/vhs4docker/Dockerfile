@@ -116,7 +116,7 @@
 # Feel free to contact me via sebastian@sommerfeld.io or visit https://www.sommerfeld.io.
 
 
-FROM ghcr.io/charmbracelet/vhs:v0.7.2
+FROM ghcr.io/charmbracelet/vhs:v0.8.0
 LABEL maintainer="sebastian@sommerfeld.io"
 
 
