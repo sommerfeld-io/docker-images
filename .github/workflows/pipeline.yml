@@ -199,8 +199,6 @@ jobs:
             image-name: source2docs
             context: src/main/source2docs
           - registry: docker.io
-            image-name: vhs4docker
-            context: src/main/vhs4docker
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -292,8 +290,6 @@ jobs:
             image-name: qodana
           - registry: docker.io
             image-name: source2docs
-          - registry: docker.io
-            image-name: vhs4docker
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

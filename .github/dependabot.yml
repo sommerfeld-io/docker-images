@@ -40,8 +40,3 @@ updates:
     directory: src/main/source2docs
     schedule:
       interval: weekly
-
-  - package-ecosystem: docker
-    directory: src/main/vhs4docker
-    schedule:
-      interval: weekly
