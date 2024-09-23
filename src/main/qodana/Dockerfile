@@ -67,7 +67,7 @@
 # * IntelliJ AsciiDoc Plugin docs -> https://intellij-asciidoc-plugin.ahus1.de/docs/users-guide/features/advanced/validation-cicd.html
 
 
-FROM jetbrains/qodana-jvm-community:2024.1
+FROM jetbrains/qodana-jvm-community:2024.2
 LABEL maintainer="sebastian@sommerfeld.io"
 
 RUN apt-get update \
